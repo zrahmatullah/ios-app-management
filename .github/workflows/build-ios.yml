@@ -15,7 +15,7 @@ jobs:
       - name: Select Xcode
         run: |
           sudo xcode-select -switch /Applications/Xcode.app/Contents/Developer
-          xcrun --sdk iphoneos --show-sdk-path
+          xcodebuild -version
 
       - name: Set up Go
         uses: actions/setup-go@v5
@@ -36,12 +36,21 @@ jobs:
       - name: Build iOS App (.ipa unsigned payload)
         run: |
           cd ios
-          xcodebuild -project Lumina.xcodeproj -scheme Lumina -sdk iphoneos -configuration Release -destination 'generic/platform=iOS' CODE_SIGN_STYLE=Manual CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" AD_HOC_CODE_SIGNING_ALLOWED=YES -derivedDataPath ./build/DerivedData build 2>&1 | tee /tmp/xcodebuild.log || (echo "=== XCODEBUILD ERROR LOG ==="; tail -n 80 /tmp/xcodebuild.log; exit 1)
-          mkdir -p ./build/Payload
-          APP_PATH=$(find ./build/DerivedData -name "Lumina.app" | head -n 1)
-          echo "Found app at: $APP_PATH"
-          cp -R "$APP_PATH" ./build/Payload/
-          cd ./build && zip -r Lumina.ipa Payload
+          mkdir -p build
+          xcodebuild archive \
+            -project Lumina.xcodeproj \
+            -scheme Lumina \
+            -configuration Release \
+            -archivePath "build/Unsigned.xcarchive" \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            2>&1 | tee /tmp/xcodebuild.log || (echo "=== XCODEBUILD ERROR LOG ==="; tail -n 80 /tmp/xcodebuild.log; exit 1)
+          
+          mkdir -p build/Payload
+          cp -R build/Unsigned.xcarchive/Products/Applications/*.app build/Payload/
+          cd build && zip -r Lumina.ipa Payload
+          echo "IPA built successfully at: $(pwd)/Lumina.ipa"
 
       - name: Upload IPA Artifact
         uses: actions/upload-artifact@v4
