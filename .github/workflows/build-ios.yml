@@ -20,9 +20,9 @@ jobs:
 
       - name: Install Gomobile
         run: |
+          export PATH=$(go env GOPATH)/bin:$PATH
           go install golang.org/x/mobile/cmd/gomobile@latest
           go install golang.org/x/mobile/cmd/gobind@latest
-          export PATH=$(go env GOPATH)/bin:$PATH
           gomobile init
 
       - name: Build Go Core Framework
@@ -30,7 +30,7 @@ jobs:
           export PATH=$(go env GOPATH)/bin:$PATH
           mkdir -p ios/Frameworks
           cd core
-          gomobile bind -target=ios,iossimulator -o ../ios/Frameworks/LuminaCore.xcframework ./bridge
+          gomobile bind -v -target=ios,iossimulator -o ../ios/Frameworks/LuminaCore.xcframework lumina/core/bridge
 
       - name: Build iOS App (.ipa unsigned payload)
         run: |
