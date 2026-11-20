@@ -5,6 +5,9 @@ on:
     branches: [ main, master ]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: macos-latest
@@ -75,17 +78,16 @@ jobs:
           cd build && zip -r Lumina.ipa Payload
           echo "IPA built successfully at: $(pwd)/Lumina.ipa"
 
-      - name: Print Xcode Build Log
+      - name: Push Build Log to Branch
         if: always()
         run: |
-          if [ -f /tmp/xcodebuild.log ]; then
-            echo "## Xcode Log Output" >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            tail -n 80 /tmp/xcodebuild.log >> $GITHUB_STEP_SUMMARY
-            echo '```' >> $GITHUB_STEP_SUMMARY
-            echo "=== FULL LOG ERRORS ==="
-            grep -i -C 3 "error:" /tmp/xcodebuild.log || tail -n 60 /tmp/xcodebuild.log
-          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git checkout -B build-log
+          cp /tmp/xcodebuild.log ./xcodebuild.log 2>/dev/null || true
+          git add xcodebuild.log
+          git commit -m "chore: upload build log" || true
+          git push -f origin build-log || true
 
       - name: Upload IPA Artifact
         if: success()
@@ -93,10 +95,3 @@ jobs:
         with:
           name: Lumina-iOS-IPA
           path: ios/build/Lumina.ipa
-
-      - name: Upload Build Log on Failure
-        if: failure()
-        uses: actions/upload-artifact@v4
-        with:
-          name: Xcode-Build-Log
-          path: /tmp/xcodebuild.log
