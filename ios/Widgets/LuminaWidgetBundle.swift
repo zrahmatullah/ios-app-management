@@ -1,7 +1,7 @@
 import WidgetKit
 import SwiftUI
 
-@main
+// Configured as widget bundle for Widget Extension
 public struct LuminaWidgetBundle: WidgetBundle {
     public init() {}
     

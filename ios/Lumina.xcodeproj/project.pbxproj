@@ -58,10 +58,9 @@
 		AF0030 /* BalanceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0030 /* BalanceWidget.swift */; };
 		AF0031 /* HabitWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0031 /* HabitWidget.swift */; };
 		AF0032 /* LuminaWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0032 /* LuminaWidgetBundle.swift */; };
-		AF0033 /* LuminaWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0033 /* LuminaWidgets.swift */; };
-		AF0034 /* SavingsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0034 /* SavingsWidget.swift */; };
-		AF0035 /* ToggleHabitIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0035 /* ToggleHabitIntent.swift */; };
-		AF0036 /* WidgetDataBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0036 /* WidgetDataBridge.swift */; };
+		AF0033 /* SavingsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0033 /* SavingsWidget.swift */; };
+		AF0034 /* ToggleHabitIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0034 /* ToggleHabitIntent.swift */; };
+		AF0035 /* WidgetDataBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0035 /* WidgetDataBridge.swift */; };
 		AR0000 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BR0000 /* Info.plist */; };
 		AR0001 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BR0001 /* Localizable.strings */; };
 		AR0002 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BR0002 /* Localizable.strings */; };
@@ -119,10 +118,9 @@
 		BF0030 /* BalanceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/BalanceWidget.swift"; sourceTree = SOURCE_ROOT; };
 		BF0031 /* HabitWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/HabitWidget.swift"; sourceTree = SOURCE_ROOT; };
 		BF0032 /* LuminaWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/LuminaWidgetBundle.swift"; sourceTree = SOURCE_ROOT; };
-		BF0033 /* LuminaWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/LuminaWidgets.swift"; sourceTree = SOURCE_ROOT; };
-		BF0034 /* SavingsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/SavingsWidget.swift"; sourceTree = SOURCE_ROOT; };
-		BF0035 /* ToggleHabitIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/ToggleHabitIntent.swift"; sourceTree = SOURCE_ROOT; };
-		BF0036 /* WidgetDataBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/WidgetDataBridge.swift"; sourceTree = SOURCE_ROOT; };
+		BF0033 /* SavingsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/SavingsWidget.swift"; sourceTree = SOURCE_ROOT; };
+		BF0034 /* ToggleHabitIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/ToggleHabitIntent.swift"; sourceTree = SOURCE_ROOT; };
+		BF0035 /* WidgetDataBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/WidgetDataBridge.swift"; sourceTree = SOURCE_ROOT; };
 		BR0000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Resources/Info.plist"; sourceTree = SOURCE_ROOT; };
 		BR0001 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "Resources/en.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		BR0002 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "Resources/id.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
@@ -194,10 +192,9 @@
 				BF0030 /* BalanceWidget.swift */,
 				BF0031 /* HabitWidget.swift */,
 				BF0032 /* LuminaWidgetBundle.swift */,
-				BF0033 /* LuminaWidgets.swift */,
-				BF0034 /* SavingsWidget.swift */,
-				BF0035 /* ToggleHabitIntent.swift */,
-				BF0036 /* WidgetDataBridge.swift */,
+				BF0033 /* SavingsWidget.swift */,
+				BF0034 /* ToggleHabitIntent.swift */,
+				BF0035 /* WidgetDataBridge.swift */,
 				BR0000 /* Info.plist */,
 				BR0001 /* Localizable.strings */,
 				BR0002 /* Localizable.strings */,
@@ -328,10 +325,9 @@
 				AF0030 /* BalanceWidget.swift in Sources */,
 				AF0031 /* HabitWidget.swift in Sources */,
 				AF0032 /* LuminaWidgetBundle.swift in Sources */,
-				AF0033 /* LuminaWidgets.swift in Sources */,
-				AF0034 /* SavingsWidget.swift in Sources */,
-				AF0035 /* ToggleHabitIntent.swift in Sources */,
-				AF0036 /* WidgetDataBridge.swift in Sources */,
+				AF0033 /* SavingsWidget.swift in Sources */,
+				AF0034 /* ToggleHabitIntent.swift in Sources */,
+				AF0035 /* WidgetDataBridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
