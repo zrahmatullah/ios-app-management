@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina iOS - Interactive Simulator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.2/dist/confetti.browser.min.js"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+    
+    * {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: radial-gradient(circle at 50% 15%, #181938 0%, #090b14 100%);
+      color: #f8fafc;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      margin: 0;
+      overflow-x: hidden;
+    }
+
+    /* iPhone 16 Pro Frame with Hardware Acceleration */
+    .iphone-frame {
+      width: 380px;
+      height: 780px;
+      background: #090d16;
+      border-radius: 50px;
+      box-shadow: 0 0 0 10px #242938, 0 0 0 12px #151824, 0 30px 65px -15px rgba(0,0,0,0.9);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      border: 3px solid #334155;
+      transform: translateZ(0);
+      will-change: transform;
+    }
+
+    .dynamic-island {
+      width: 116px;
+      height: 30px;
+      background: #000;
+      border-radius: 20px;
+      position: absolute;
+      top: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 12px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    }
+    
+    .island-lens {
+      width: 9px;
+      height: 9px;
+      background: #111827;
+      border-radius: 50%;
+      border: 1px solid #1f2937;
+    }
+
+    /* 60 FPS Glass Surfaces */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+      transform: translateZ(0);
+    }
+
+    .glass-tabbar {
+      background: rgba(13, 17, 30, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 32px;
+      transform: translateZ(0);
+    }
+
+    .lumina-gradient {
+      background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%);
+    }
+
+    .lumina-gradient-text {
+      background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 50%, #EC4899 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .progress-circle {
+      transform: rotate(-90deg);
+    }
+
+    .fade-in {
+      animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Hide scrollbar */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body>
+
+  <!-- Top Controller Toolbar -->
+  <div class="mb-4 text-center">
+    <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-semibold mb-2">
+      <i class="fa-solid fa-shield-check"></i> OWASP MASVS Security + Safe-to-Spend™ & Round-Up
+    </div>
+    <div class="flex items-center justify-center gap-3">
+      <h1 class="text-lg font-bold text-white tracking-tight">Lumina Personal App</h1>
+      <button onclick="gotoScreen('LOGIN')" class="px-3 py-1 text-[11px] rounded-lg bg-indigo-600/30 hover:bg-indigo-600/50 text-indigo-200 font-semibold border border-indigo-500/30 transition transform active:scale-95">
+        <i class="fa-solid fa-lock mr-1"></i> Kunci Layar (Login)
+      </button>
+      <button onclick="gotoScreen('REGISTER')" class="px-3 py-1 text-[11px] rounded-lg bg-white/10 hover:bg-white/20 text-slate-300 font-semibold border border-white/10 transition transform active:scale-95">
+        <i class="fa-solid fa-user-plus mr-1"></i> Register Akun
+      </button>
+    </div>
+  </div>
+
+  <!-- iPhone Frame -->
+  <div class="iphone-frame select-none">
+    
+    <!-- Dynamic Island -->
+    <div class="dynamic-island">
+      <div class="island-lens"></div>
+      <div class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></div>
+    </div>
+
+    <!-- Status Bar iOS -->
+    <div class="pt-3 px-7 flex justify-between items-center text-[12px] font-semibold text-slate-300 z-30">
+      <span id="currentTime">09:41</span>
+      <div class="flex items-center gap-1.5">
+        <i class="fa-solid fa-signal text-[11px]"></i>
+        <i class="fa-solid fa-wifi text-[11px]"></i>
+        <i class="fa-solid fa-battery-full text-[13px]"></i>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 1. SPLASH SCREEN (INITIAL DATABASE LOAD) -->
+    <!-- ========================================== -->
+    <div id="splashScreen" class="absolute inset-0 bg-[#090d16] z-50 flex flex-col items-center justify-center p-6">
+      <div class="relative w-20 h-20 flex items-center justify-center mb-6">
+        <div class="absolute inset-0 rounded-full bg-indigo-500/20 blur-lg animate-pulse"></div>
+        <div class="w-16 h-16 rounded-full border-4 border-indigo-500/30 border-t-pink-500 border-r-indigo-500 animate-spin"></div>
+        <div class="absolute text-2xl font-bold lumina-gradient-text">
+          <i class="fa-solid fa-sparkles"></i>
+        </div>
+      </div>
+      <h2 class="text-2xl font-black lumina-gradient-text tracking-tight mb-1">Lumina</h2>
+      <p class="text-[11px] text-slate-400 font-medium">Mengamankan basis data lokal (OWASP)...</p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 2. REGISTER MASTER ACCOUNT SCREEN -->
+    <!-- ========================================== -->
+    <div id="registerScreen" class="absolute inset-0 bg-[#090d16] z-40 flex flex-col justify-between p-6 pt-14 pb-8 hidden overflow-y-auto no-scrollbar">
+      <div class="text-center pt-2">
+        <div class="w-14 h-14 mx-auto rounded-2xl glass-card flex items-center justify-center text-xl lumina-gradient-text shadow-xl mb-3 border border-white/15">
+          <i class="fa-solid fa-user-shield"></i>
+        </div>
+        <h2 class="text-xl font-bold text-white tracking-tight">Pendaftaran Akun</h2>
+        <p class="text-[11px] text-slate-400 px-4 mt-1">Buat profil & 6 digit Master PIN untuk mengunci brankas data Anda.</p>
+      </div>
+
+      <div class="space-y-3 my-auto">
+        <div class="glass-card p-3">
+          <label class="text-[10px] text-slate-400 block mb-1">Nama Panggilan</label>
+          <input type="text" id="regName" value="Alex" class="w-full bg-transparent text-sm text-white font-bold outline-none placeholder-slate-600">
+        </div>
+        <div class="glass-card p-3">
+          <label class="text-[10px] text-slate-400 block mb-1">Buat 6-Digit Master PIN</label>
+          <input type="password" id="regPin" maxlength="6" value="123456" class="w-full bg-transparent text-lg text-white font-bold tracking-widest outline-none">
+        </div>
+        <div class="p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-[10px] text-indigo-300 leading-relaxed">
+          <i class="fa-solid fa-shield-halved mr-1"></i> Standar <strong>OWASP MASVS</strong>: PIN di-hash dengan Salted SHA-256 & disimpan di iOS Keychain. Bebas server luar.
+        </div>
+      </div>
+
+      <div>
+        <button onclick="handleRegister()" class="w-full py-3.5 rounded-xl lumina-gradient text-white text-xs font-bold shadow-lg shadow-indigo-500/30 flex items-center justify-center gap-2 transform active:scale-95 transition">
+          <span>Daftar & Kunci Brankas</span>
+          <i class="fa-solid fa-arrow-right text-[11px]"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 3. LOGIN MASTER PIN KEYPAD SCREEN -->
+    <!-- ========================================== -->
+    <div id="loginScreen" class="absolute inset-0 bg-[#090d16] z-40 flex flex-col justify-between p-6 pt-14 pb-8 hidden overflow-y-auto no-scrollbar">
+      <div class="text-center pt-2">
+        <div class="w-14 h-14 mx-auto rounded-full bg-indigo-500/15 border border-indigo-500/25 flex items-center justify-center text-xl text-indigo-400 mb-2.5">
+          <i class="fa-solid fa-lock"></i>
+        </div>
+        <h3 class="text-base font-bold text-white">Selamat Datang, <span id="userNameLabel">Alex</span></h3>
+        <p class="text-[11px] text-slate-400 mt-0.5">Masukkan 6 Digit PIN Master Anda</p>
+      </div>
+
+      <!-- 6 Dots PIN Indicator -->
+      <div class="flex justify-center gap-3.5 my-3">
+        <div id="dot0" class="w-3 h-3 rounded-full bg-white/20 transition-all"></div>
+        <div id="dot1" class="w-3 h-3 rounded-full bg-white/20 transition-all"></div>
+        <div id="dot2" class="w-3 h-3 rounded-full bg-white/20 transition-all"></div>
+        <div id="dot3" class="w-3 h-3 rounded-full bg-white/20 transition-all"></div>
+        <div id="dot4" class="w-3 h-3 rounded-full bg-white/20 transition-all"></div>
+        <div id="dot5" class="w-3 h-3 rounded-full bg-white/20 transition-all"></div>
+      </div>
+      <p id="loginError" class="text-[10px] text-rose-400 text-center font-bold h-4"></p>
+
+      <!-- Number Pad Keypad -->
+      <div class="space-y-2.5 max-w-[240px] mx-auto w-full pb-2">
+        <div class="flex justify-between">
+          <button onclick="pressKey('1')" class="w-14 h-14 rounded-full bg-white/5 hover:bg-white/10 text-lg font-bold text-white active:scale-90 transition">1</button>
+          <button onclick="pressKey('2')" class="w-14 h-14 rounded-full bg-white/5 hover:bg-white/10 text-lg font-bold text-white active:scale-90 transition">2</button>
+          <button onclick="pressKey('3')" class="w-14 h-14 rounded-full bg-white/5 hover:bg-white/10 text-lg font-bold text-white active:scale-90 transition">3</button>
+        </div>
+        <div class="flex justify-between">
+          <button onclick="pressKey('4')" class="w-14 h-14 rounded-full bg-white/5 hover:bg-white/10 text-lg font-bold text-white active:scale-90 transition">4</button>
+          <button onclick="pressKey('5')" class="w-14 h-14 rounded-full bg-white/5 hover:bg-white/10 text-lg font-bold text-white active:scale-90 transition">5</button>
+          <button onclick="pressKey('6')" class="w-14 h-14 rounded-full bg-white/5 hover:bg-white/10 text-lg font-bold text-white active:scale-90 transition">6</button>
+        </div>
+        <div class="flex justify-between">
+          <button onclick="pressKey('7')" class="w-14 h-14 rounded-full bg-white/5 hover:bg-white/10 text-lg font-bold text-white active:scale-90 transition">7</button>
+          <button onclick="pressKey('8')" class="w-14 h-14 rounded-full bg-white/5 hover:bg-white/10 text-lg font-bold text-white active:scale-90 transition">8</button>
+          <button onclick="pressKey('9')" class="w-14 h-14 rounded-full bg-white/5 hover:bg-white/10 text-lg font-bold text-white active:scale-90 transition">9</button>
+        </div>
+        <div class="flex justify-between items-center">
+          <button onclick="quickFaceID()" title="Face ID Unlock" class="w-14 h-14 rounded-full flex items-center justify-center text-indigo-400 text-lg active:scale-90 transition">
+            <i class="fa-solid fa-face-smile"></i>
+          </button>
+          <button onclick="pressKey('0')" class="w-14 h-14 rounded-full bg-white/5 hover:bg-white/10 text-lg font-bold text-white active:scale-90 transition">0</button>
+          <button onclick="deleteKey()" class="w-14 h-14 rounded-full flex items-center justify-center text-slate-400 text-base active:scale-90 transition">
+            <i class="fa-solid fa-delete-left"></i>
+          </button>
+        </div>
+      </div>
+      <p class="text-[9px] text-slate-500 text-center">Anti Brute-Force: Kunci 30s setelah 5x salah (Default PIN: 123456)</p>
+    </div>
+
+    <!-- ========================================== -->
+    <!-- 4. MAIN APP CONTENT AREA -->
+    <!-- ========================================== -->
+    <div id="mainAppWrapper" class="flex-1 flex flex-col overflow-hidden relative hidden">
+      
+      <!-- Scrollable Content Screen -->
+      <div id="screenScroll" class="flex-1 overflow-y-auto no-scrollbar pt-3 pb-24 px-4 space-y-3.5">
+        
+        <!-- ================= TAB 0: BERANDA ================= -->
+        <div id="tabScreen0" class="space-y-3.5 fade-in">
+          <div class="flex justify-between items-center pt-1">
+            <div>
+              <p class="text-[11px] text-slate-400 font-medium">Selamat Malam,</p>
+              <h2 class="text-2xl font-black lumina-gradient-text tracking-tight">Lumina Life</h2>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <span class="text-[10px] px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 font-bold border border-emerald-500/30">
+                <i class="fa-solid fa-shield-halved mr-1"></i> OWASP
+              </span>
+              <button onclick="gotoScreen('LOGIN')" title="Kunci Aplikasi" class="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-slate-300 hover:bg-white/20 transition">
+                <i class="fa-solid fa-lock text-xs text-indigo-400"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Total Balance Card -->
+          <div class="glass-card p-4 relative overflow-hidden">
+            <div class="flex justify-between items-center text-xs text-slate-400 mb-1">
+              <span>Total Saldo Keseluruhan</span>
+              <i class="fa-solid fa-wallet text-indigo-400"></i>
+            </div>
+            <div class="text-3xl font-extrabold text-white tracking-tight" id="balanceDisplay">Rp 5.750.000</div>
+            <div class="mt-3 pt-2.5 border-t border-white/10 flex justify-between text-xs">
+              <div>
+                <span class="text-slate-400 block text-[10px]">Pemasukan Bulan Ini</span>
+                <span class="text-emerald-400 font-bold">+Rp 8.500.000</span>
+              </div>
+              <div class="text-right">
+                <span class="text-slate-400 block text-[10px]">Pengeluaran Bulan Ini</span>
+                <span class="text-rose-400 font-bold">-Rp 3.200.000</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- PHASE 2: SAFE-TO-SPEND™ CARD -->
+          <div class="glass-card p-3.5 border-emerald-500/30">
+            <div class="flex justify-between items-center mb-1.5">
+              <div class="flex items-center gap-2">
+                <div class="w-6 h-6 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center text-[10px]">
+                  <i class="fa-solid fa-shield-check"></i>
+                </div>
+                <div>
+                  <span class="text-[10px] text-slate-400 block leading-tight">Uang Aman Belanja Hari Ini</span>
+                  <span class="text-[11px] font-bold text-emerald-400">Kondisi Aman</span>
+                </div>
+              </div>
+              <span class="text-[9px] px-2 py-0.5 rounded-full bg-indigo-500/20 text-indigo-300 font-extrabold">Safe-to-Spend™</span>
+            </div>
+            <div class="flex items-baseline justify-between mt-2 pt-2 border-t border-white/10">
+              <div class="text-xl font-black text-emerald-400">Rp 85.000 <span class="text-[10px] text-slate-400 font-normal">/ hari</span></div>
+              <span class="text-[10px] text-slate-400">Sisa 12 hari bulan ini</span>
+            </div>
+          </div>
+
+          <!-- Target Tabungan -->
+          <div class="glass-card p-3.5">
+            <div class="flex justify-between items-center mb-2.5">
+              <h3 class="text-xs font-bold text-slate-200">Target Celengan</h3>
+              <button onclick="switchTab(1)" class="text-[10px] text-indigo-400 font-semibold hover:underline">Lihat Semua</button>
+            </div>
+            <div class="flex items-center gap-3.5">
+              <div class="relative w-12 h-12 flex items-center justify-center flex-shrink-0">
+                <svg class="w-12 h-12 progress-circle">
+                  <circle cx="24" cy="24" r="19" stroke="rgba(255,255,255,0.1)" stroke-width="4" fill="none"/>
+                  <circle cx="24" cy="24" r="19" stroke="#F59E0B" stroke-width="4" stroke-dasharray="120" stroke-dashoffset="84" stroke-linecap="round" fill="none"/>
+                </svg>
+                <span class="absolute text-[10px] font-bold text-white">30%</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="text-xs font-bold text-white truncate">Dana Darurat</div>
+                <div class="text-[10px] text-slate-400">Rp 4.500.000 / Rp 15.000.000</div>
+                <div class="text-[9px] text-amber-400 mt-0.5">Sisa 42 hari lagi</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Habit Tracker With Confetti Celebration -->
+          <div class="glass-card p-3.5">
+            <div class="flex justify-between items-center mb-2">
+              <h3 class="text-xs font-bold text-slate-200">Habit Tracker Hari Ini</h3>
+              <span class="text-[10px] text-orange-400 font-bold">🔥 4 Hari Streak</span>
+            </div>
+            <div class="flex items-center justify-between p-2.5 rounded-xl bg-white/5 border border-white/5">
+              <div class="flex items-center gap-2.5">
+                <button onclick="toggleHabitWithConfetti(this)" class="w-5 h-5 rounded-full border-2 border-emerald-400 bg-emerald-500 text-white text-[10px] flex items-center justify-center transition">
+                  <i class="fa-solid fa-check"></i>
+                </button>
+                <div>
+                  <span class="text-xs font-semibold text-white block">Minum Air 2 Liter</span>
+                  <span class="text-[9px] text-slate-400">Target harian kesehatan</span>
+                </div>
+              </div>
+              <span class="text-[11px] text-emerald-400 font-bold">Selesai</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 1: KEUANGAN ================= -->
+        <div id="tabScreen1" class="space-y-3.5 fade-in hidden">
+          <h2 class="text-xl font-bold text-white pt-1">Dompet & Anggaran</h2>
+          
+          <div class="flex gap-2.5 overflow-x-auto no-scrollbar pb-1">
+            <div class="glass-card p-3 min-w-[125px] flex-shrink-0">
+              <div class="flex items-center gap-1.5 mb-1.5 text-emerald-400 text-xs">
+                <i class="fa-solid fa-money-bill-wave"></i>
+                <span class="font-bold text-white">Tunai</span>
+              </div>
+              <div class="text-sm font-bold text-white">Rp 500.000</div>
+            </div>
+            <div class="glass-card p-3 min-w-[125px] flex-shrink-0 border-indigo-500/40">
+              <div class="flex items-center gap-1.5 mb-1.5 text-indigo-400 text-xs">
+                <i class="fa-solid fa-building-columns"></i>
+                <span class="font-bold text-white">BCA Utama</span>
+              </div>
+              <div class="text-sm font-bold text-white">Rp 5.000.000</div>
+            </div>
+            <div class="glass-card p-3 min-w-[125px] flex-shrink-0">
+              <div class="flex items-center gap-1.5 mb-1.5 text-purple-400 text-xs">
+                <i class="fa-solid fa-credit-card"></i>
+                <span class="font-bold text-white">GoPay</span>
+              </div>
+              <div class="text-sm font-bold text-white">Rp 250.000</div>
+            </div>
+          </div>
+
+          <!-- Safe to spend reminder -->
+          <div class="glass-card p-3 flex justify-between items-center text-xs">
+            <span class="text-slate-300">Saran belanja aman harian:</span>
+            <span class="font-bold text-emerald-400">Rp 85.000 / hari</span>
+          </div>
+
+          <div class="space-y-2">
+            <h3 class="text-xs font-bold text-slate-300">Riwayat Terakhir</h3>
+            <div class="glass-card p-3 flex justify-between items-center">
+              <div class="flex items-center gap-2.5">
+                <div class="w-7 h-7 rounded-full bg-rose-500/20 text-rose-400 flex items-center justify-center text-xs">
+                  <i class="fa-solid fa-utensils"></i>
+                </div>
+                <div>
+                  <span class="text-xs font-semibold text-white block">Makan Siang & Kopi</span>
+                  <span class="text-[9px] text-slate-400">Hari ini • BCA • Round-Up +Rp 5.000</span>
+                </div>
+              </div>
+              <span class="text-xs font-bold text-rose-400">-Rp 45.000</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 2: TARGET ================= -->
+        <div id="tabScreen2" class="space-y-3.5 fade-in hidden">
+          <h2 class="text-xl font-bold text-white pt-1">Target & Kebiasaan</h2>
+          <div class="glass-card p-3.5 space-y-2.5">
+            <div class="flex justify-between items-start">
+              <div>
+                <span class="text-[9px] font-bold px-2 py-0.5 rounded bg-indigo-500/30 text-indigo-300 uppercase">Karier</span>
+                <h3 class="text-xs font-bold text-white mt-1">Sertifikasi Cloud Architect</h3>
+                <p class="text-[9px] text-slate-400">Deadline: 15 Des 2026</p>
+              </div>
+              <span class="text-xs font-bold text-indigo-400">65%</span>
+            </div>
+            <div class="w-full bg-white/10 rounded-full h-1.5 overflow-hidden">
+              <div class="lumina-gradient h-1.5 rounded-full" style="width: 65%"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ================= TAB 3: KALENDER ================= -->
+        <div id="tabScreen3" class="space-y-3.5 fade-in hidden">
+          <h2 class="text-xl font-bold text-white pt-1">Kalender & Agenda</h2>
+          <div class="glass-card p-3">
+            <p class="text-xs font-bold text-white">Event Hari Ini</p>
+            <p class="text-[10px] text-indigo-400 mt-0.5">19:00 • Evaluasi Finansial Bulanan</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ================= FLOATING GLASS TABBAR ================= -->
+      <div class="absolute bottom-4 left-3 right-3 z-30">
+        <div class="glass-tabbar px-2 py-1.5 flex items-center justify-between shadow-2xl">
+          <button onclick="switchTab(0)" class="tab-btn flex-1 flex flex-col items-center gap-0.5 text-indigo-400" id="tab0">
+            <i class="fa-solid fa-house text-xs"></i>
+            <span class="text-[9px] font-bold">Beranda</span>
+          </button>
+          <button onclick="switchTab(1)" class="tab-btn flex-1 flex flex-col items-center gap-0.5 text-slate-400" id="tab1">
+            <i class="fa-solid fa-credit-card text-xs"></i>
+            <span class="text-[9px] font-medium">Keuangan</span>
+          </button>
+
+          <!-- Center Floating Plus Button -->
+          <button onclick="openQuickAdd()" class="w-10 h-10 rounded-full lumina-gradient flex items-center justify-center text-white text-sm shadow-md shadow-indigo-500/40 -mt-4 mx-1 transition transform active:scale-95">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+
+          <button onclick="switchTab(2)" class="tab-btn flex-1 flex flex-col items-center gap-0.5 text-slate-400" id="tab2">
+            <i class="fa-solid fa-bullseye text-xs"></i>
+            <span class="text-[9px] font-medium">Target</span>
+          </button>
+          <button onclick="switchTab(3)" class="tab-btn flex-1 flex flex-col items-center gap-0.5 text-slate-400" id="tab3">
+            <i class="fa-solid fa-calendar text-xs"></i>
+            <span class="text-[9px] font-medium">Kalender</span>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Quick Add Modal Popup with Round-Up Savings Rule -->
+    <div id="quickAddModal" class="absolute inset-0 bg-black/75 backdrop-blur-sm z-50 flex items-end hidden">
+      <div class="w-full bg-slate-900 border-t border-white/15 rounded-t-[28px] p-4 space-y-2.5">
+        <div class="w-8 h-1 bg-white/20 rounded-full mx-auto mb-1"></div>
+        <h3 class="text-xs font-bold text-white text-center">Tambah Transaksi</h3>
+        
+        <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-2">
+          <div class="flex justify-between text-xs">
+            <span class="text-slate-300">Nominal Belanja</span>
+            <span class="font-bold text-white">Rp 32.500</span>
+          </div>
+          <div class="pt-2 border-t border-white/10 flex justify-between items-center text-xs">
+            <div class="flex items-center gap-1.5">
+              <i class="fa-solid fa-arrow-up-right-dots text-emerald-400"></i>
+              <span class="text-[11px] text-emerald-300 font-semibold">Otomatisasi Round-Up:</span>
+            </div>
+            <span class="text-[11px] font-bold text-emerald-400">+Rp 2.500 ke Celengan</span>
+          </div>
+        </div>
+
+        <button onclick="saveRoundUpTx()" class="w-full py-2.5 rounded-xl lumina-gradient text-white text-xs font-bold shadow-lg shadow-indigo-500/30">
+          Simpan Transaksi (Rp 35.000)
+        </button>
+        <button onclick="closeQuickAdd()" class="w-full py-1.5 text-center text-xs text-slate-400 font-semibold">Batal</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let enteredPin = "";
+    let correctPin = "123456";
+    let userName = "Alex";
+
+    function gotoScreen(state) {
+      const splash = document.getElementById('splashScreen');
+      const register = document.getElementById('registerScreen');
+      const login = document.getElementById('loginScreen');
+      const mainApp = document.getElementById('mainAppWrapper');
+
+      splash.classList.add('hidden');
+      register.classList.add('hidden');
+      login.classList.add('hidden');
+      mainApp.classList.add('hidden');
+
+      if (state === 'SPLASH') {
+        splash.classList.remove('hidden');
+        setTimeout(() => {
+          gotoScreen('LOGIN');
+        }, 800);
+      } else if (state === 'REGISTER') {
+        register.classList.remove('hidden');
+      } else if (state === 'LOGIN') {
+        enteredPin = "";
+        updateDots();
+        document.getElementById('userNameLabel').innerText = userName;
+        document.getElementById('loginError').innerText = "";
+        login.classList.remove('hidden');
+      } else if (state === 'DASHBOARD') {
+        mainApp.classList.remove('hidden');
+        switchTab(0);
+      }
+    }
+
+    function handleRegister() {
+      const name = document.getElementById('regName').value.trim();
+      const pin = document.getElementById('regPin').value.trim();
+      if (!name || pin.length !== 6) {
+        alert("Nama wajib diisi dan PIN harus tepat 6 digit!");
+        return;
+      }
+      userName = name;
+      correctPin = pin;
+      confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } });
+      gotoScreen('LOGIN');
+    }
+
+    function pressKey(digit) {
+      if (enteredPin.length < 6) {
+        enteredPin += digit;
+        updateDots();
+        if (enteredPin.length === 6) {
+          setTimeout(verifyLoginPin, 150);
+        }
+      }
+    }
+
+    function deleteKey() {
+      if (enteredPin.length > 0) {
+        enteredPin = enteredPin.slice(0, -1);
+        updateDots();
+      }
+    }
+
+    function updateDots() {
+      for (let i = 0; i < 6; i++) {
+        const dot = document.getElementById('dot' + i);
+        if (i < enteredPin.length) {
+          dot.className = "w-3 h-3 rounded-full bg-indigo-500 scale-110 transition-all";
+        } else {
+          dot.className = "w-3 h-3 rounded-full bg-white/20 transition-all";
+        }
+      }
+    }
+
+    function verifyLoginPin() {
+      if (enteredPin === correctPin) {
+        document.getElementById('loginError').innerText = "";
+        confetti({ particleCount: 50, spread: 70, origin: { y: 0.6 } });
+        gotoScreen('DASHBOARD');
+      } else {
+        document.getElementById('loginError').innerText = "PIN salah! Coba lagi.";
+        enteredPin = "";
+        updateDots();
+      }
+    }
+
+    function quickFaceID() {
+      confetti({ particleCount: 40, spread: 50, origin: { y: 0.6 } });
+      gotoScreen('DASHBOARD');
+    }
+
+    function toggleHabitWithConfetti(btn) {
+      if (btn.classList.contains('bg-emerald-500')) {
+        btn.className = 'w-5 h-5 rounded-full border-2 border-slate-500 bg-transparent text-transparent text-[10px] flex items-center justify-center transition';
+      } else {
+        btn.className = 'w-5 h-5 rounded-full border-2 border-emerald-400 bg-emerald-500 text-white text-[10px] flex items-center justify-center transition';
+        confetti({ particleCount: 55, spread: 65, origin: { y: 0.6 } });
+      }
+    }
+
+    function saveRoundUpTx() {
+      confetti({ particleCount: 45, spread: 60, origin: { y: 0.7 } });
+      alert("✅ Transaksi Rp 32.500 berhasil dicatat!\n🪙 Rp 2.500 pembulatan otomatis ditabung ke Celengan Dana Darurat.");
+      closeQuickAdd();
+    }
+
+    // Tab Switching Logic
+    function switchTab(index) {
+      for (let i = 0; i < 4; i++) {
+        const screen = document.getElementById('tabScreen' + i);
+        const btn = document.getElementById('tab' + i);
+        if (screen) {
+          if (i === index) {
+            screen.classList.remove('hidden');
+            screen.classList.add('fade-in');
+          } else {
+            screen.classList.add('hidden');
+            screen.classList.remove('fade-in');
+          }
+        }
+        if (btn) {
+          if (i === index) {
+            btn.className = 'tab-btn flex-1 flex flex-col items-center gap-0.5 text-indigo-400';
+            btn.querySelector('span').className = 'text-[9px] font-bold';
+          } else {
+            btn.className = 'tab-btn flex-1 flex flex-col items-center gap-0.5 text-slate-400';
+            btn.querySelector('span').className = 'text-[9px] font-medium';
+          }
+        }
+      }
+    }
+
+    function openQuickAdd() {
+      document.getElementById('quickAddModal').classList.remove('hidden');
+    }
+    function closeQuickAdd() {
+      document.getElementById('quickAddModal').classList.add('hidden');
+    }
+
+    function updateClock() {
+      const now = new Date();
+      const hrs = String(now.getHours()).padStart(2, '0');
+      const mins = String(now.getMinutes()).padStart(2, '0');
+      document.getElementById('currentTime').innerText = hrs + ":" + mins;
+    }
+
+    window.addEventListener('DOMContentLoaded', () => {
+      updateClock();
+      setInterval(updateClock, 10000);
+      gotoScreen('SPLASH');
+    });
+  </script>
+</body>
+</html>

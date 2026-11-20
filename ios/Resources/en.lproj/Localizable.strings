@@ -1,0 +1,42 @@
+/* English Localization for Lumina */
+
+"Selamat Pagi," = "Good Morning,";
+"Selamat Siang," = "Good Afternoon,";
+"Selamat Sore," = "Good Evening,";
+"Selamat Malam," = "Good Night,";
+
+"Total Saldo Keseluruhan" = "Total Balance";
+"Pemasukan" = "Income";
+"Pengeluaran" = "Expense";
+"Transfer" = "Transfer";
+
+"Target Tabungan" = "Savings Goals";
+"Lihat Semua" = "See All";
+"Target & Milestone" = "Goals & Milestones";
+"Habit Tracker Hari Ini" = "Daily Habits";
+"Agenda Hari Ini" = "Today's Agenda";
+"Catatan Terbaru" = "Recent Notes";
+
+"Beranda" = "Home";
+"Keuangan" = "Finance";
+"Target" = "Goals";
+"Kalender" = "Calendar";
+"Catatan" = "Notes";
+"Pengaturan" = "Settings";
+
+"Setor Dana" = "Deposit";
+"Tarik Dana" = "Withdraw";
+"Saran & Proyeksi Cerdas" = "Smart Forecast & Tips";
+"Sisa Hari" = "Days Left";
+"Saran per Bulan" = "Per Month Target";
+"Saran per Minggu" = "Per Week Target";
+"Saran per Hari" = "Per Day Target";
+
+"Batal" = "Cancel";
+"Simpan" = "Save";
+"Selesai" = "Done";
+"Hapus" = "Delete";
+
+"Kunci Aplikasi (Face ID / Passcode)" = "Lock App (Face ID / Passcode)";
+"Ekspor Cadangan Lengkap (JSON)" = "Export Full Backup (JSON)";
+"Ekspor Transaksi (CSV)" = "Export Transactions (CSV)";

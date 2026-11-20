@@ -1,0 +1,3 @@
+@echo off
+echo Starting Lumina Interactive Preview...
+start "" "%~dp0preview\index.html"

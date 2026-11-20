@@ -1,0 +1,42 @@
+/* Indonesian Localization for Lumina */
+
+"Selamat Pagi," = "Selamat Pagi,";
+"Selamat Siang," = "Selamat Siang,";
+"Selamat Sore," = "Selamat Sore,";
+"Selamat Malam," = "Selamat Malam,";
+
+"Total Saldo Keseluruhan" = "Total Saldo Keseluruhan";
+"Pemasukan" = "Pemasukan";
+"Pengeluaran" = "Pengeluaran";
+"Transfer" = "Transfer";
+
+"Target Tabungan" = "Target Tabungan";
+"Lihat Semua" = "Lihat Semua";
+"Target & Milestone" = "Target & Milestone";
+"Habit Tracker Hari Ini" = "Habit Tracker Hari Ini";
+"Agenda Hari Ini" = "Agenda Hari Ini";
+"Catatan Terbaru" = "Catatan Terbaru";
+
+"Beranda" = "Beranda";
+"Keuangan" = "Keuangan";
+"Target" = "Target";
+"Kalender" = "Kalender";
+"Catatan" = "Catatan";
+"Pengaturan" = "Pengaturan";
+
+"Setor Dana" = "Setor Dana";
+"Tarik Dana" = "Tarik Dana";
+"Saran & Proyeksi Cerdas" = "Saran & Proyeksi Cerdas";
+"Sisa Hari" = "Sisa Hari";
+"Saran per Bulan" = "Saran per Bulan";
+"Saran per Minggu" = "Saran per Minggu";
+"Saran per Hari" = "Saran per Hari";
+
+"Batal" = "Batal";
+"Simpan" = "Simpan";
+"Selesai" = "Selesai";
+"Hapus" = "Hapus";
+
+"Kunci Aplikasi (Face ID / Passcode)" = "Kunci Aplikasi (Face ID / Passcode)";
+"Ekspor Cadangan Lengkap (JSON)" = "Ekspor Cadangan Lengkap (JSON)";
+"Ekspor Transaksi (CSV)" = "Ekspor Transaksi (CSV)";
