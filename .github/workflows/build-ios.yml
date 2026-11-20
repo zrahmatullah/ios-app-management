@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: macos-13
+    runs-on: macos-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v4
@@ -29,13 +29,13 @@ jobs:
           cd core
           gomobile bind -target=ios,iossimulator -o ../ios/Frameworks/LuminaCore.xcframework ./bridge
 
-      - name: Build iOS App (.ipa / unsigned payload)
+      - name: Build iOS App (.ipa unsigned payload)
         run: |
           cd ios
-          xcodebuild -project Lumina.xcodeproj -scheme Lumina -sdk iphoneos -configuration Release -destination 'generic/platform=iOS' CODE_SIGNING_ALLOWED=NO build
-          mkdir -p build/Payload
-          cp -r $(find ~/Library/Developer/Xcode/DerivedData -name "Lumina.app" | head -n 1) build/Payload/
-          cd build && zip -r Lumina.ipa Payload
+          xcodebuild -project Lumina.xcodeproj -scheme Lumina -sdk iphoneos -configuration Release -destination 'generic/platform=iOS' CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" -derivedDataPath ./build/DerivedData build
+          mkdir -p ./build/Payload
+          cp -R ./build/DerivedData/Build/Products/Release-iphoneos/Lumina.app ./build/Payload/
+          cd ./build && zip -r Lumina.ipa Payload
 
       - name: Upload IPA Artifact
         uses: actions/upload-artifact@v4
