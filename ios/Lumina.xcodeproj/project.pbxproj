@@ -7,123 +7,126 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A001 /* LuminaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = B001 /* LuminaApp.swift */; };
-		A002 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = B002 /* Theme.swift */; };
-		A003 /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = B003 /* Typography.swift */; };
-		A004 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B004 /* CardView.swift */; };
-		A005 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B005 /* PrimaryButton.swift */; };
-		A006 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = B006 /* ProgressRing.swift */; };
-		A007 /* CategoryChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = B007 /* CategoryChip.swift */; };
-		A008 /* AmountText.swift in Sources */ = {isa = PBXBuildFile; fileRef = B008 /* AmountText.swift */; };
-		A009 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B009 /* EmptyStateView.swift */; };
-		A010 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B010 /* DashboardViewModel.swift */; };
-		A011 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B011 /* DashboardView.swift */; };
-		A012 /* FinanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B012 /* FinanceViewModel.swift */; };
-		A013 /* FinanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B013 /* FinanceView.swift */; };
-		A014 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B014 /* AddTransactionView.swift */; };
-		A015 /* BudgetManageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B015 /* BudgetManageView.swift */; };
-		A016 /* SavingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B016 /* SavingsViewModel.swift */; };
-		A017 /* SavingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B017 /* SavingsListView.swift */; };
-		A018 /* SavingsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B018 /* SavingsDetailView.swift */; };
-		A019 /* AddSavingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B019 /* AddSavingsView.swift */; };
-		A020 /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B020 /* GoalsViewModel.swift */; };
-		A021 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B021 /* GoalsView.swift */; };
-		A022 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B022 /* AddGoalView.swift */; };
-		A023 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B023 /* CalendarViewModel.swift */; };
-		A024 /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B024 /* CalendarView.swift */; };
-		A025 /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B025 /* AddEventView.swift */; };
-		A026 /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B026 /* NotesViewModel.swift */; };
-		A027 /* NotesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B027 /* NotesListView.swift */; };
-		A028 /* NoteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B028 /* NoteEditorView.swift */; };
-		A029 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B029 /* SettingsViewModel.swift */; };
-		A030 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B030 /* SettingsView.swift */; };
-		A031 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = B031 /* Models.swift */; };
-		A032 /* LuminaTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B032 /* LuminaTabBar.swift */; };
-		A033 /* LuminaRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B033 /* LuminaRootView.swift */; };
-		A034 /* GoBridgeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B034 /* GoBridgeService.swift */; };
-		A035 /* MockBridgeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = B035 /* MockBridgeHandler.swift */; };
-		A036 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B036 /* NotificationService.swift */; };
-		A037 /* BiometricAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = B037 /* BiometricAuthService.swift */; };
-		A038 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = B038 /* Localizable.strings */; };
-		A039 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B040 /* LoadingView.swift */; };
-		A040 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B041 /* WelcomeView.swift */; };
-		A041 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B042 /* KeychainManager.swift */; };
-		A042 /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B043 /* SecurityManager.swift */; };
-		A043 /* JailbreakDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = B044 /* JailbreakDetector.swift */; };
-		A044 /* ScreenShieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = B045 /* ScreenShieldModifier.swift */; };
-		A045 /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B046 /* AuthViewModel.swift */; };
-		A046 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B047 /* RegisterView.swift */; };
-		A047 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B048 /* LoginView.swift */; };
-		A048 /* LuminaWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = B049 /* LuminaWidgets.swift */; };
-		A049 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B050 /* ConfettiView.swift */; };
-		A050 /* SafeToSpendCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = B051 /* SafeToSpendCard.swift */; };
-		A051 /* WidgetDataBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = B052 /* WidgetDataBridge.swift */; };
-		A052 /* ToggleHabitIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = B053 /* ToggleHabitIntent.swift */; };
-		A053 /* BalanceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B054 /* BalanceWidget.swift */; };
-		A054 /* HabitWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B055 /* HabitWidget.swift */; };
-		A055 /* SavingsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = B056 /* SavingsWidget.swift */; };
-		A056 /* LuminaWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B057 /* LuminaWidgetBundle.swift */; };
+		AF0000 /* LuminaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0000 /* LuminaApp.swift */; };
+		AF0001 /* AmountText.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0001 /* AmountText.swift */; };
+		AF0002 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0002 /* CardView.swift */; };
+		AF0003 /* CategoryChip.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0003 /* CategoryChip.swift */; };
+		AF0004 /* ConfettiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0004 /* ConfettiView.swift */; };
+		AF0005 /* EmptyStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0005 /* EmptyStateView.swift */; };
+		AF0006 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0006 /* LoadingView.swift */; };
+		AF0007 /* PrimaryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0007 /* PrimaryButton.swift */; };
+		AF0008 /* ProgressRing.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0008 /* ProgressRing.swift */; };
+		AF0009 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0009 /* Theme.swift */; };
+		AF000A /* Typography.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF000A /* Typography.swift */; };
+		AF000B /* AuthViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF000B /* AuthViewModel.swift */; };
+		AF000C /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF000C /* LoginView.swift */; };
+		AF000D /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF000D /* RegisterView.swift */; };
+		AF000E /* AddEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF000E /* AddEventView.swift */; };
+		AF000F /* CalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF000F /* CalendarView.swift */; };
+		AF0010 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0010 /* CalendarViewModel.swift */; };
+		AF0011 /* DashboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0011 /* DashboardView.swift */; };
+		AF0012 /* DashboardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0012 /* DashboardViewModel.swift */; };
+		AF0013 /* AddTransactionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0013 /* AddTransactionView.swift */; };
+		AF0014 /* BudgetManageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0014 /* BudgetManageView.swift */; };
+		AF0015 /* FinanceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0015 /* FinanceView.swift */; };
+		AF0016 /* FinanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0016 /* FinanceViewModel.swift */; };
+		AF0017 /* SafeToSpendCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0017 /* SafeToSpendCard.swift */; };
+		AF0018 /* AddGoalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0018 /* AddGoalView.swift */; };
+		AF0019 /* GoalsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0019 /* GoalsView.swift */; };
+		AF001A /* GoalsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF001A /* GoalsViewModel.swift */; };
+		AF001B /* NoteEditorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF001B /* NoteEditorView.swift */; };
+		AF001C /* NotesListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF001C /* NotesListView.swift */; };
+		AF001D /* NotesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF001D /* NotesViewModel.swift */; };
+		AF001E /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF001E /* WelcomeView.swift */; };
+		AF001F /* AddSavingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF001F /* AddSavingsView.swift */; };
+		AF0020 /* SavingsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0020 /* SavingsDetailView.swift */; };
+		AF0021 /* SavingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0021 /* SavingsListView.swift */; };
+		AF0022 /* SavingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0022 /* SavingsViewModel.swift */; };
+		AF0023 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0023 /* SettingsView.swift */; };
+		AF0024 /* SettingsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0024 /* SettingsViewModel.swift */; };
+		AF0025 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0025 /* Models.swift */; };
+		AF0026 /* LuminaRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0026 /* LuminaRootView.swift */; };
+		AF0027 /* LuminaTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0027 /* LuminaTabBar.swift */; };
+		AF0028 /* JailbreakDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0028 /* JailbreakDetector.swift */; };
+		AF0029 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0029 /* KeychainManager.swift */; };
+		AF002A /* ScreenShieldModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF002A /* ScreenShieldModifier.swift */; };
+		AF002B /* SecurityManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF002B /* SecurityManager.swift */; };
+		AF002C /* BiometricAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF002C /* BiometricAuthService.swift */; };
+		AF002D /* GoBridgeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF002D /* GoBridgeService.swift */; };
+		AF002E /* MockBridgeHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF002E /* MockBridgeHandler.swift */; };
+		AF002F /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF002F /* NotificationService.swift */; };
+		AF0030 /* BalanceWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0030 /* BalanceWidget.swift */; };
+		AF0031 /* HabitWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0031 /* HabitWidget.swift */; };
+		AF0032 /* LuminaWidgetBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0032 /* LuminaWidgetBundle.swift */; };
+		AF0033 /* LuminaWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0033 /* LuminaWidgets.swift */; };
+		AF0034 /* SavingsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0034 /* SavingsWidget.swift */; };
+		AF0035 /* ToggleHabitIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0035 /* ToggleHabitIntent.swift */; };
+		AF0036 /* WidgetDataBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0036 /* WidgetDataBridge.swift */; };
+		AR0000 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BR0000 /* Info.plist */; };
+		AR0001 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BR0001 /* Localizable.strings */; };
+		AR0002 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BR0002 /* Localizable.strings */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		BF0000 /* LuminaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App/LuminaApp.swift"; sourceTree = SOURCE_ROOT; };
+		BF0001 /* AmountText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DesignSystem/Components/AmountText.swift"; sourceTree = SOURCE_ROOT; };
+		BF0002 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DesignSystem/Components/CardView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0003 /* CategoryChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DesignSystem/Components/CategoryChip.swift"; sourceTree = SOURCE_ROOT; };
+		BF0004 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DesignSystem/Components/ConfettiView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0005 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DesignSystem/Components/EmptyStateView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0006 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DesignSystem/Components/LoadingView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0007 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DesignSystem/Components/PrimaryButton.swift"; sourceTree = SOURCE_ROOT; };
+		BF0008 /* ProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DesignSystem/Components/ProgressRing.swift"; sourceTree = SOURCE_ROOT; };
+		BF0009 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DesignSystem/Theme.swift"; sourceTree = SOURCE_ROOT; };
+		BF000A /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DesignSystem/Typography.swift"; sourceTree = SOURCE_ROOT; };
+		BF000B /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Auth/AuthViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		BF000C /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Auth/LoginView.swift"; sourceTree = SOURCE_ROOT; };
+		BF000D /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Auth/RegisterView.swift"; sourceTree = SOURCE_ROOT; };
+		BF000E /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Calendar/AddEventView.swift"; sourceTree = SOURCE_ROOT; };
+		BF000F /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Calendar/CalendarView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0010 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Calendar/CalendarViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		BF0011 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Dashboard/DashboardView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0012 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Dashboard/DashboardViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		BF0013 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Finance/AddTransactionView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0014 /* BudgetManageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Finance/BudgetManageView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0015 /* FinanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Finance/FinanceView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0016 /* FinanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Finance/FinanceViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		BF0017 /* SafeToSpendCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Finance/SafeToSpendCard.swift"; sourceTree = SOURCE_ROOT; };
+		BF0018 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Goals/AddGoalView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0019 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Goals/GoalsView.swift"; sourceTree = SOURCE_ROOT; };
+		BF001A /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Goals/GoalsViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		BF001B /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Notes/NoteEditorView.swift"; sourceTree = SOURCE_ROOT; };
+		BF001C /* NotesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Notes/NotesListView.swift"; sourceTree = SOURCE_ROOT; };
+		BF001D /* NotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Notes/NotesViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		BF001E /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Onboarding/WelcomeView.swift"; sourceTree = SOURCE_ROOT; };
+		BF001F /* AddSavingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Savings/AddSavingsView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0020 /* SavingsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Savings/SavingsDetailView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0021 /* SavingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Savings/SavingsListView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0022 /* SavingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Savings/SavingsViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		BF0023 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Settings/SettingsView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0024 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Features/Settings/SettingsViewModel.swift"; sourceTree = SOURCE_ROOT; };
+		BF0025 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Models/Models.swift"; sourceTree = SOURCE_ROOT; };
+		BF0026 /* LuminaRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/LuminaRootView.swift"; sourceTree = SOURCE_ROOT; };
+		BF0027 /* LuminaTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation/LuminaTabBar.swift"; sourceTree = SOURCE_ROOT; };
+		BF0028 /* JailbreakDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Security/JailbreakDetector.swift"; sourceTree = SOURCE_ROOT; };
+		BF0029 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Security/KeychainManager.swift"; sourceTree = SOURCE_ROOT; };
+		BF002A /* ScreenShieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Security/ScreenShieldModifier.swift"; sourceTree = SOURCE_ROOT; };
+		BF002B /* SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Security/SecurityManager.swift"; sourceTree = SOURCE_ROOT; };
+		BF002C /* BiometricAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/BiometricAuthService.swift"; sourceTree = SOURCE_ROOT; };
+		BF002D /* GoBridgeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/GoBridgeService.swift"; sourceTree = SOURCE_ROOT; };
+		BF002E /* MockBridgeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/MockBridgeHandler.swift"; sourceTree = SOURCE_ROOT; };
+		BF002F /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Services/NotificationService.swift"; sourceTree = SOURCE_ROOT; };
+		BF0030 /* BalanceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/BalanceWidget.swift"; sourceTree = SOURCE_ROOT; };
+		BF0031 /* HabitWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/HabitWidget.swift"; sourceTree = SOURCE_ROOT; };
+		BF0032 /* LuminaWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/LuminaWidgetBundle.swift"; sourceTree = SOURCE_ROOT; };
+		BF0033 /* LuminaWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/LuminaWidgets.swift"; sourceTree = SOURCE_ROOT; };
+		BF0034 /* SavingsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/SavingsWidget.swift"; sourceTree = SOURCE_ROOT; };
+		BF0035 /* ToggleHabitIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/ToggleHabitIntent.swift"; sourceTree = SOURCE_ROOT; };
+		BF0036 /* WidgetDataBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Widgets/WidgetDataBridge.swift"; sourceTree = SOURCE_ROOT; };
+		BR0000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Resources/Info.plist"; sourceTree = SOURCE_ROOT; };
+		BR0001 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "Resources/en.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
+		BR0002 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "Resources/id.lproj/Localizable.strings"; sourceTree = SOURCE_ROOT; };
 		C001 /* Lumina.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lumina.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		B001 /* LuminaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuminaApp.swift; sourceTree = "<group>"; };
-		B002 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		B003 /* Typography.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typography.swift; sourceTree = "<group>"; };
-		B004 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
-		B005 /* PrimaryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrimaryButton.swift; sourceTree = "<group>"; };
-		B006 /* ProgressRing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressRing.swift; sourceTree = "<group>"; };
-		B007 /* CategoryChip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryChip.swift; sourceTree = "<group>"; };
-		B008 /* AmountText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AmountText.swift; sourceTree = "<group>"; };
-		B009 /* EmptyStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyStateView.swift; sourceTree = "<group>"; };
-		B010 /* DashboardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardViewModel.swift; sourceTree = "<group>"; };
-		B011 /* DashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardView.swift; sourceTree = "<group>"; };
-		B012 /* FinanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceViewModel.swift; sourceTree = "<group>"; };
-		B013 /* FinanceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceView.swift; sourceTree = "<group>"; };
-		B014 /* AddTransactionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTransactionView.swift; sourceTree = "<group>"; };
-		B015 /* BudgetManageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BudgetManageView.swift; sourceTree = "<group>"; };
-		B016 /* SavingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsViewModel.swift; sourceTree = "<group>"; };
-		B017 /* SavingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsListView.swift; sourceTree = "<group>"; };
-		B018 /* SavingsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavingsDetailView.swift; sourceTree = "<group>"; };
-		B019 /* AddSavingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddSavingsView.swift; sourceTree = "<group>"; };
-		B020 /* GoalsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsViewModel.swift; sourceTree = "<group>"; };
-		B021 /* GoalsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoalsView.swift; sourceTree = "<group>"; };
-		B022 /* AddGoalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGoalView.swift; sourceTree = "<group>"; };
-		B023 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
-		B024 /* CalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarView.swift; sourceTree = "<group>"; };
-		B025 /* AddEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddEventView.swift; sourceTree = "<group>"; };
-		B026 /* NotesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewModel.swift; sourceTree = "<group>"; };
-		B027 /* NotesListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesListView.swift; sourceTree = "<group>"; };
-		B028 /* NoteEditorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteEditorView.swift; sourceTree = "<group>"; };
-		B029 /* SettingsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewModel.swift; sourceTree = "<group>"; };
-		B030 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		B031 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
-		B032 /* LuminaTabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuminaTabBar.swift; sourceTree = "<group>"; };
-		B033 /* LuminaRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuminaRootView.swift; sourceTree = "<group>"; };
-		B034 /* GoBridgeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoBridgeService.swift; sourceTree = "<group>"; };
-		B035 /* MockBridgeHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockBridgeHandler.swift; sourceTree = "<group>"; };
-		B036 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
-		B037 /* BiometricAuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BiometricAuthService.swift; sourceTree = "<group>"; };
-		B038 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Localizable.strings; path = Resources/id.lproj/Localizable.strings; sourceTree = "<group>"; };
-		B039 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Resources/Info.plist; sourceTree = "<group>"; };
-		B040 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem/Components/LoadingView.swift; sourceTree = "<group>"; };
-		B041 /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Onboarding/WelcomeView.swift; sourceTree = "<group>"; };
-		B042 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Security/KeychainManager.swift; sourceTree = "<group>"; };
-		B043 /* SecurityManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Security/SecurityManager.swift; sourceTree = "<group>"; };
-		B044 /* JailbreakDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Security/JailbreakDetector.swift; sourceTree = "<group>"; };
-		B045 /* ScreenShieldModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Security/ScreenShieldModifier.swift; sourceTree = "<group>"; };
-		B046 /* AuthViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Auth/AuthViewModel.swift; sourceTree = "<group>"; };
-		B047 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Auth/RegisterView.swift; sourceTree = "<group>"; };
-		B048 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Auth/LoginView.swift; sourceTree = "<group>"; };
-		B049 /* LuminaWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets/LuminaWidgets.swift; sourceTree = "<group>"; };
-		B050 /* ConfettiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignSystem/Components/ConfettiView.swift; sourceTree = "<group>"; };
-		B051 /* SafeToSpendCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Features/Finance/SafeToSpendCard.swift; sourceTree = "<group>"; };
-		B052 /* WidgetDataBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets/WidgetDataBridge.swift; sourceTree = "<group>"; };
-		B053 /* ToggleHabitIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets/ToggleHabitIntent.swift; sourceTree = "<group>"; };
-		B054 /* BalanceWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets/BalanceWidget.swift; sourceTree = "<group>"; };
-		B055 /* HabitWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets/HabitWidget.swift; sourceTree = "<group>"; };
-		B056 /* SavingsWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets/SavingsWidget.swift; sourceTree = "<group>"; };
-		B057 /* LuminaWidgetBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Widgets/LuminaWidgetBundle.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,111 +143,66 @@
 		E001 = {
 			isa = PBXGroup;
 			children = (
-				E002 /* App */,
-				E003 /* DesignSystem */,
-				E004 /* Features */,
-				E005 /* Models */,
-				E006 /* Navigation */,
-				E007 /* Services */,
-				E008 /* Resources */,
-				E009 /* Products */,
-			);
-			sourceTree = "<group>";
-		};
-		E002 /* App */ = {
-			isa = PBXGroup;
-			children = (
-				B001 /* LuminaApp.swift */,
-			);
-			path = App;
-			sourceTree = "<group>";
-		};
-		E003 /* DesignSystem */ = {
-			isa = PBXGroup;
-			children = (
-				B002 /* Theme.swift */,
-				B003 /* Typography.swift */,
-				B004 /* CardView.swift */,
-				B005 /* PrimaryButton.swift */,
-				B006 /* ProgressRing.swift */,
-				B007 /* CategoryChip.swift */,
-				B008 /* AmountText.swift */,
-				B009 /* EmptyStateView.swift */,
-			);
-			path = DesignSystem;
-			sourceTree = "<group>";
-		};
-		E004 /* Features */ = {
-			isa = PBXGroup;
-			children = (
-				B010 /* DashboardViewModel.swift */,
-				B011 /* DashboardView.swift */,
-				B012 /* FinanceViewModel.swift */,
-				B013 /* FinanceView.swift */,
-				B014 /* AddTransactionView.swift */,
-				B015 /* BudgetManageView.swift */,
-				B016 /* SavingsViewModel.swift */,
-				B017 /* SavingsListView.swift */,
-				B018 /* SavingsDetailView.swift */,
-				B019 /* AddSavingsView.swift */,
-				B020 /* GoalsViewModel.swift */,
-				B021 /* GoalsView.swift */,
-				B022 /* AddGoalView.swift */,
-				B023 /* CalendarViewModel.swift */,
-				B024 /* CalendarView.swift */,
-				B025 /* AddEventView.swift */,
-				B026 /* NotesViewModel.swift */,
-				B027 /* NotesListView.swift */,
-				B028 /* NoteEditorView.swift */,
-				B029 /* SettingsViewModel.swift */,
-				B030 /* SettingsView.swift */,
-			);
-			path = Features;
-			sourceTree = "<group>";
-		};
-		E005 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				B031 /* Models.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		E006 /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				B032 /* LuminaTabBar.swift */,
-				B033 /* LuminaRootView.swift */,
-			);
-			path = Navigation;
-			sourceTree = "<group>";
-		};
-		E007 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				B034 /* GoBridgeService.swift */,
-				B035 /* MockBridgeHandler.swift */,
-				B036 /* NotificationService.swift */,
-				B037 /* BiometricAuthService.swift */,
-			);
-			path = Services;
-			sourceTree = "<group>";
-		};
-		E008 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				B038 /* Localizable.strings */,
-				B039 /* Info.plist */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		E009 /* Products */ = {
-			isa = PBXGroup;
-			children = (
+				BF0000 /* LuminaApp.swift */,
+				BF0001 /* AmountText.swift */,
+				BF0002 /* CardView.swift */,
+				BF0003 /* CategoryChip.swift */,
+				BF0004 /* ConfettiView.swift */,
+				BF0005 /* EmptyStateView.swift */,
+				BF0006 /* LoadingView.swift */,
+				BF0007 /* PrimaryButton.swift */,
+				BF0008 /* ProgressRing.swift */,
+				BF0009 /* Theme.swift */,
+				BF000A /* Typography.swift */,
+				BF000B /* AuthViewModel.swift */,
+				BF000C /* LoginView.swift */,
+				BF000D /* RegisterView.swift */,
+				BF000E /* AddEventView.swift */,
+				BF000F /* CalendarView.swift */,
+				BF0010 /* CalendarViewModel.swift */,
+				BF0011 /* DashboardView.swift */,
+				BF0012 /* DashboardViewModel.swift */,
+				BF0013 /* AddTransactionView.swift */,
+				BF0014 /* BudgetManageView.swift */,
+				BF0015 /* FinanceView.swift */,
+				BF0016 /* FinanceViewModel.swift */,
+				BF0017 /* SafeToSpendCard.swift */,
+				BF0018 /* AddGoalView.swift */,
+				BF0019 /* GoalsView.swift */,
+				BF001A /* GoalsViewModel.swift */,
+				BF001B /* NoteEditorView.swift */,
+				BF001C /* NotesListView.swift */,
+				BF001D /* NotesViewModel.swift */,
+				BF001E /* WelcomeView.swift */,
+				BF001F /* AddSavingsView.swift */,
+				BF0020 /* SavingsDetailView.swift */,
+				BF0021 /* SavingsListView.swift */,
+				BF0022 /* SavingsViewModel.swift */,
+				BF0023 /* SettingsView.swift */,
+				BF0024 /* SettingsViewModel.swift */,
+				BF0025 /* Models.swift */,
+				BF0026 /* LuminaRootView.swift */,
+				BF0027 /* LuminaTabBar.swift */,
+				BF0028 /* JailbreakDetector.swift */,
+				BF0029 /* KeychainManager.swift */,
+				BF002A /* ScreenShieldModifier.swift */,
+				BF002B /* SecurityManager.swift */,
+				BF002C /* BiometricAuthService.swift */,
+				BF002D /* GoBridgeService.swift */,
+				BF002E /* MockBridgeHandler.swift */,
+				BF002F /* NotificationService.swift */,
+				BF0030 /* BalanceWidget.swift */,
+				BF0031 /* HabitWidget.swift */,
+				BF0032 /* LuminaWidgetBundle.swift */,
+				BF0033 /* LuminaWidgets.swift */,
+				BF0034 /* SavingsWidget.swift */,
+				BF0035 /* ToggleHabitIntent.swift */,
+				BF0036 /* WidgetDataBridge.swift */,
+				BR0000 /* Info.plist */,
+				BR0001 /* Localizable.strings */,
+				BR0002 /* Localizable.strings */,
 				C001 /* Lumina.app */,
 			);
-			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -284,15 +242,15 @@
 			};
 			buildConfigurationList = K001 /* Build configuration list for PBXProject "Lumina" */;
 			compatibilityVersion = "Xcode 14.0";
-			developmentRegion = id;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				id,
 				en,
+				id,
 				Base,
 			);
 			mainGroup = E001;
-			productRefGroup = E009 /* Products */;
+			productRefGroup = E001;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -306,7 +264,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A038 /* Localizable.strings in Resources */,
+				AR0000 /* Info.plist in Resources */,
+				AR0001 /* Localizable.strings in Resources */,
+				AR0002 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,61 +277,61 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A001 /* LuminaApp.swift in Sources */,
-				A002 /* Theme.swift in Sources */,
-				A003 /* Typography.swift in Sources */,
-				A004 /* CardView.swift in Sources */,
-				A005 /* PrimaryButton.swift in Sources */,
-				A006 /* ProgressRing.swift in Sources */,
-				A007 /* CategoryChip.swift in Sources */,
-				A008 /* AmountText.swift in Sources */,
-				A009 /* EmptyStateView.swift in Sources */,
-				A010 /* DashboardViewModel.swift in Sources */,
-				A011 /* DashboardView.swift in Sources */,
-				A012 /* FinanceViewModel.swift in Sources */,
-				A013 /* FinanceView.swift in Sources */,
-				A014 /* AddTransactionView.swift in Sources */,
-				A015 /* BudgetManageView.swift in Sources */,
-				A016 /* SavingsViewModel.swift in Sources */,
-				A017 /* SavingsListView.swift in Sources */,
-				A018 /* SavingsDetailView.swift in Sources */,
-				A019 /* AddSavingsView.swift in Sources */,
-				A020 /* GoalsViewModel.swift in Sources */,
-				A021 /* GoalsView.swift in Sources */,
-				A022 /* AddGoalView.swift in Sources */,
-				A023 /* CalendarViewModel.swift in Sources */,
-				A024 /* CalendarView.swift in Sources */,
-				A025 /* AddEventView.swift in Sources */,
-				A026 /* NotesViewModel.swift in Sources */,
-				A027 /* NotesListView.swift in Sources */,
-				A028 /* NoteEditorView.swift in Sources */,
-				A029 /* SettingsViewModel.swift in Sources */,
-				A030 /* SettingsView.swift in Sources */,
-				A031 /* Models.swift in Sources */,
-				A032 /* LuminaTabBar.swift in Sources */,
-				A033 /* LuminaRootView.swift in Sources */,
-				A034 /* GoBridgeService.swift in Sources */,
-				A035 /* MockBridgeHandler.swift in Sources */,
-				A036 /* NotificationService.swift in Sources */,
-				A037 /* BiometricAuthService.swift in Sources */,
-				A039 /* LoadingView.swift in Sources */,
-				A040 /* WelcomeView.swift in Sources */,
-				A041 /* KeychainManager.swift in Sources */,
-				A042 /* SecurityManager.swift in Sources */,
-				A043 /* JailbreakDetector.swift in Sources */,
-				A044 /* ScreenShieldModifier.swift in Sources */,
-				A045 /* AuthViewModel.swift in Sources */,
-				A046 /* RegisterView.swift in Sources */,
-				A047 /* LoginView.swift in Sources */,
-				A048 /* LuminaWidgets.swift in Sources */,
-				A049 /* ConfettiView.swift in Sources */,
-				A050 /* SafeToSpendCard.swift in Sources */,
-				A051 /* WidgetDataBridge.swift in Sources */,
-				A052 /* ToggleHabitIntent.swift in Sources */,
-				A053 /* BalanceWidget.swift in Sources */,
-				A054 /* HabitWidget.swift in Sources */,
-				A055 /* SavingsWidget.swift in Sources */,
-				A056 /* LuminaWidgetBundle.swift in Sources */,
+				AF0000 /* LuminaApp.swift in Sources */,
+				AF0001 /* AmountText.swift in Sources */,
+				AF0002 /* CardView.swift in Sources */,
+				AF0003 /* CategoryChip.swift in Sources */,
+				AF0004 /* ConfettiView.swift in Sources */,
+				AF0005 /* EmptyStateView.swift in Sources */,
+				AF0006 /* LoadingView.swift in Sources */,
+				AF0007 /* PrimaryButton.swift in Sources */,
+				AF0008 /* ProgressRing.swift in Sources */,
+				AF0009 /* Theme.swift in Sources */,
+				AF000A /* Typography.swift in Sources */,
+				AF000B /* AuthViewModel.swift in Sources */,
+				AF000C /* LoginView.swift in Sources */,
+				AF000D /* RegisterView.swift in Sources */,
+				AF000E /* AddEventView.swift in Sources */,
+				AF000F /* CalendarView.swift in Sources */,
+				AF0010 /* CalendarViewModel.swift in Sources */,
+				AF0011 /* DashboardView.swift in Sources */,
+				AF0012 /* DashboardViewModel.swift in Sources */,
+				AF0013 /* AddTransactionView.swift in Sources */,
+				AF0014 /* BudgetManageView.swift in Sources */,
+				AF0015 /* FinanceView.swift in Sources */,
+				AF0016 /* FinanceViewModel.swift in Sources */,
+				AF0017 /* SafeToSpendCard.swift in Sources */,
+				AF0018 /* AddGoalView.swift in Sources */,
+				AF0019 /* GoalsView.swift in Sources */,
+				AF001A /* GoalsViewModel.swift in Sources */,
+				AF001B /* NoteEditorView.swift in Sources */,
+				AF001C /* NotesListView.swift in Sources */,
+				AF001D /* NotesViewModel.swift in Sources */,
+				AF001E /* WelcomeView.swift in Sources */,
+				AF001F /* AddSavingsView.swift in Sources */,
+				AF0020 /* SavingsDetailView.swift in Sources */,
+				AF0021 /* SavingsListView.swift in Sources */,
+				AF0022 /* SavingsViewModel.swift in Sources */,
+				AF0023 /* SettingsView.swift in Sources */,
+				AF0024 /* SettingsViewModel.swift in Sources */,
+				AF0025 /* Models.swift in Sources */,
+				AF0026 /* LuminaRootView.swift in Sources */,
+				AF0027 /* LuminaTabBar.swift in Sources */,
+				AF0028 /* JailbreakDetector.swift in Sources */,
+				AF0029 /* KeychainManager.swift in Sources */,
+				AF002A /* ScreenShieldModifier.swift in Sources */,
+				AF002B /* SecurityManager.swift in Sources */,
+				AF002C /* BiometricAuthService.swift in Sources */,
+				AF002D /* GoBridgeService.swift in Sources */,
+				AF002E /* MockBridgeHandler.swift in Sources */,
+				AF002F /* NotificationService.swift in Sources */,
+				AF0030 /* BalanceWidget.swift in Sources */,
+				AF0031 /* HabitWidget.swift in Sources */,
+				AF0032 /* LuminaWidgetBundle.swift in Sources */,
+				AF0033 /* LuminaWidgets.swift in Sources */,
+				AF0034 /* SavingsWidget.swift in Sources */,
+				AF0035 /* ToggleHabitIntent.swift in Sources */,
+				AF0036 /* WidgetDataBridge.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -426,7 +386,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				AD_HOC_CODE_SIGNING_ALLOWED = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;
@@ -453,7 +417,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "";
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGNING_ALLOWED = NO;
+				AD_HOC_CODE_SIGNING_ALLOWED = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "";
 				ENABLE_PREVIEWS = YES;

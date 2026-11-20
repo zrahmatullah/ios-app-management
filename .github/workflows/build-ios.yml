@@ -36,9 +36,11 @@ jobs:
       - name: Build iOS App (.ipa unsigned payload)
         run: |
           cd ios
-          xcodebuild -project Lumina.xcodeproj -scheme Lumina -sdk iphoneos -configuration Release -destination 'generic/platform=iOS' CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" -derivedDataPath ./build/DerivedData build
+          xcodebuild -project Lumina.xcodeproj -scheme Lumina -sdk iphoneos -configuration Release -destination 'generic/platform=iOS' CODE_SIGN_STYLE=Manual CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY="" AD_HOC_CODE_SIGNING_ALLOWED=YES -derivedDataPath ./build/DerivedData build
           mkdir -p ./build/Payload
-          cp -R ./build/DerivedData/Build/Products/Release-iphoneos/Lumina.app ./build/Payload/
+          APP_PATH=$(find ./build/DerivedData -name "Lumina.app" | head -n 1)
+          echo "Found app at: $APP_PATH"
+          cp -R "$APP_PATH" ./build/Payload/
           cd ./build && zip -r Lumina.ipa Payload
 
       - name: Upload IPA Artifact
