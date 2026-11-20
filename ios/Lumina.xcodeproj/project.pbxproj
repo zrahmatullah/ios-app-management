@@ -61,7 +61,6 @@
 		AF0033 /* SavingsWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0033 /* SavingsWidget.swift */; };
 		AF0034 /* ToggleHabitIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0034 /* ToggleHabitIntent.swift */; };
 		AF0035 /* WidgetDataBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0035 /* WidgetDataBridge.swift */; };
-		AR0000 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BR0000 /* Info.plist */; };
 		AR0001 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BR0001 /* Localizable.strings */; };
 		AR0002 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = BR0002 /* Localizable.strings */; };
 /* End PBXBuildFile section */
@@ -261,7 +260,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AR0000 /* Info.plist in Resources */,
 				AR0001 /* Localizable.strings in Resources */,
 				AR0002 /* Localizable.strings in Resources */,
 			);
