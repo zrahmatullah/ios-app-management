@@ -34,8 +34,21 @@ public struct AddGoalView: View {
                         }
                     }
                     .pickerStyle(.segmented)
-                    
+                }
+                
+                Section(header: Text("Tenggat Waktu")) {
                     DatePicker("Batas Waktu", selection: $deadline, displayedComponents: .date)
+                    
+                    // Quick deadline chips
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 8) {
+                            deadlinePresetButton(months: 1, label: "+1 Bulan")
+                            deadlinePresetButton(months: 3, label: "+3 Bulan")
+                            deadlinePresetButton(months: 6, label: "+6 Bulan")
+                            deadlinePresetButton(months: 12, label: "+1 Tahun")
+                        }
+                        .padding(.vertical, 4)
+                    }
                 }
             }
             .navigationTitle("Target Baru")
@@ -48,22 +61,41 @@ public struct AddGoalView: View {
                     Button("Simpan") {
                         saveGoal()
                     }
-                    .disabled(title.isEmpty)
+                    .disabled(title.trimmingCharacters(in: .whitespacesAndNewlines).count < 3)
                     .fontWeight(.bold)
                 }
             }
         }
     }
     
+    private func deadlinePresetButton(months: Int, label: String) -> some View {
+        Button(action: {
+            if let newDate = Calendar.current.date(byAdding: .month, value: months, to: Date()) {
+                deadline = newDate
+                HapticManager.impact(.light)
+            }
+        }) {
+            Text(label)
+                .font(.system(size: 12, weight: .semibold, design: .rounded))
+                .foregroundColor(Color(hex: "6366F1"))
+                .padding(.horizontal, 10)
+                .padding(.vertical, 6)
+                .background(Color(hex: "6366F1").opacity(0.12))
+                .cornerRadius(8)
+        }
+    }
+    
     private func saveGoal() {
+        guard title.trimmingCharacters(in: .whitespacesAndNewlines).count >= 3 else { return }
         Task {
             let success = await viewModel.createGoal(
-                title: title,
+                title: title.trimmingCharacters(in: .whitespacesAndNewlines),
                 category: category,
                 priority: priority,
                 deadline: deadline
             )
             if success {
+                HapticManager.notification(.success)
                 dismiss()
             }
         }
@@ -139,7 +171,7 @@ public struct AddHabitView: View {
                     Button("Simpan") {
                         saveHabit()
                     }
-                    .disabled(title.isEmpty)
+                    .disabled(title.trimmingCharacters(in: .whitespacesAndNewlines).count < 2)
                     .fontWeight(.bold)
                 }
             }
@@ -147,13 +179,15 @@ public struct AddHabitView: View {
     }
     
     private func saveHabit() {
+        guard title.trimmingCharacters(in: .whitespacesAndNewlines).count >= 2 else { return }
         Task {
             let success = await viewModel.createHabit(
-                title: title,
+                title: title.trimmingCharacters(in: .whitespacesAndNewlines),
                 icon: selectedIcon,
                 color: selectedColor
             )
             if success {
+                HapticManager.notification(.success)
                 dismiss()
             }
         }

@@ -67,6 +67,20 @@ public struct SettingsView: View {
                     }
                 }
                 
+                // Zona Bahaya (OWASP Data Sanitization)
+                Section(header: Text("Keamanan & Reset Data"), footer: Text("Mereset data akan menghapus seluruh transaksi, anggaran, target, dan catatan lokal dari iPhone Anda.")) {
+                    Button(role: .destructive, action: {
+                        viewModel.showResetConfirmation = true
+                    }) {
+                        HStack {
+                            Image(systemName: "trash.fill")
+                                .foregroundColor(.red)
+                            Text("Hapus Semua Data Lokal (Factory Reset)")
+                                .foregroundColor(.red)
+                        }
+                    }
+                }
+                
                 // Info Aplikasi
                 Section(header: Text("Tentang Lumina")) {
                     Button(action: {
@@ -99,6 +113,13 @@ public struct SettingsView: View {
                     }
                     
                     HStack {
+                        Text("Standar Enkripsi")
+                        Spacer()
+                        Text("OWASP MASVS / Keychain")
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    HStack {
                         Text("Status Akun")
                         Spacer()
                         Text("Tanpa Akun (100% Privat)")
@@ -109,6 +130,14 @@ public struct SettingsView: View {
             .navigationTitle("Pengaturan")
             .sheet(isPresented: $viewModel.showingShareSheet) {
                 ActivityView(activityItems: viewModel.shareItems)
+            }
+            .alert("Hapus Seluruh Data?", isPresented: $viewModel.showResetConfirmation) {
+                Button("Batal", role: .cancel) {}
+                Button("Hapus Semua", role: .destructive) {
+                    Task { _ = await viewModel.wipeLocalData() }
+                }
+            } message: {
+                Text("Tindakan ini tidak dapat dibatalkan. Seluruh riwayat transaksi, anggaran, celengan, dan jurnal akan dihapus secara permanen.")
             }
         }
     }

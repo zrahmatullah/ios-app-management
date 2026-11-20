@@ -173,6 +173,7 @@ public struct DepositSheetView: View {
     @State private var amountString: String = ""
     @State private var selectedAccountId: String = ""
     @State private var note: String = ""
+    @State private var validationError: String? = nil
     
     public init(savingsId: String, initialType: String, viewModel: SavingsViewModel) {
         self.savingsId = savingsId
@@ -197,6 +198,16 @@ public struct DepositSheetView: View {
                         TextField("0", text: $amountString)
                             .font(.system(size: 30, weight: .bold, design: .rounded))
                             .keyboardType(.numberPad)
+                    }
+                    
+                    if let err = validationError {
+                        HStack(spacing: 6) {
+                            Image(systemName: "exclamationmark.triangle.fill")
+                                .foregroundColor(.red)
+                            Text(err)
+                                .font(LuminaFont.caption())
+                                .foregroundColor(.red)
+                        }
                     }
                 }
                 
@@ -237,7 +248,17 @@ public struct DepositSheetView: View {
     }
     
     private func saveEntry() {
-        guard let amount = Int64(amountString.replacingOccurrences(of: ".", with: "")) else { return }
+        guard let amount = Int64(amountString.replacingOccurrences(of: ".", with: "")), amount > 0 else {
+            validationError = "Nominal harus lebih dari Rp 0"
+            return
+        }
+        
+        if let s = viewModel.selectedSavings, type == "WITHDRAW", amount > s.currentAmount {
+            validationError = "Penarikan melebihi saldo celengan (Rp \(s.currentAmount.formatted()))"
+            HapticManager.notification(.error)
+            return
+        }
+        
         Task {
             let accId = selectedAccountId.isEmpty ? nil : selectedAccountId
             let success = await viewModel.addEntry(
@@ -248,6 +269,7 @@ public struct DepositSheetView: View {
                 note: note
             )
             if success {
+                HapticManager.notification(.success)
                 dismiss()
             }
         }

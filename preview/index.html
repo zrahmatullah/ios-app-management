@@ -183,21 +183,41 @@
       <div class="space-y-3 my-auto">
         <div class="glass-card p-3">
           <label class="text-[10px] text-slate-400 block mb-1">Nama Panggilan</label>
-          <input type="text" id="regName" value="Alex" class="w-full bg-transparent text-sm text-white font-bold outline-none placeholder-slate-600">
+          <input type="text" id="regName" value="Alex" oninput="validateRegForm()" class="w-full bg-transparent text-sm text-white font-bold outline-none placeholder-slate-600">
         </div>
         <div class="glass-card p-3">
           <label class="text-[10px] text-slate-400 block mb-1">Buat 6-Digit Master PIN</label>
-          <input type="password" id="regPin" maxlength="6" value="123456" class="w-full bg-transparent text-lg text-white font-bold tracking-widest outline-none">
+          <input type="password" id="regPin" maxlength="6" value="583921" oninput="validateRegForm()" class="w-full bg-transparent text-lg text-white font-bold tracking-widest outline-none">
         </div>
-        <div class="p-3 rounded-xl bg-indigo-500/10 border border-indigo-500/20 text-[10px] text-indigo-300 leading-relaxed">
-          <i class="fa-solid fa-shield-halved mr-1"></i> Standar <strong>OWASP MASVS</strong>: PIN di-hash dengan Salted SHA-256 & disimpan di iOS Keychain. Bebas server luar.
+        <div class="glass-card p-3">
+          <label class="text-[10px] text-slate-400 block mb-1">Konfirmasi 6-Digit Master PIN</label>
+          <input type="password" id="regPinConfirm" maxlength="6" value="583921" oninput="validateRegForm()" class="w-full bg-transparent text-lg text-white font-bold tracking-widest outline-none">
+        </div>
+        
+        <!-- Live OWASP MASVS Checklist -->
+        <div class="p-3 rounded-xl bg-white/5 border border-white/10 space-y-1.5 text-[10px]">
+          <div class="text-slate-400 font-bold mb-1 flex items-center gap-1.5">
+            <i class="fa-solid fa-shield-check text-indigo-400"></i> Standar Keamanan OWASP MASVS:
+          </div>
+          <div id="valName" class="flex items-center gap-2 text-emerald-400">
+            <i class="fa-solid fa-circle-check"></i> <span>Nama minimal 3 karakter</span>
+          </div>
+          <div id="valLength" class="flex items-center gap-2 text-emerald-400">
+            <i class="fa-solid fa-circle-check"></i> <span>PIN terdiri dari 6 angka</span>
+          </div>
+          <div id="valNonSeq" class="flex items-center gap-2 text-emerald-400">
+            <i class="fa-solid fa-circle-check"></i> <span>Bukan urutan (123456) atau kembar (111111)</span>
+          </div>
+          <div id="valMatch" class="flex items-center gap-2 text-emerald-400">
+            <i class="fa-solid fa-circle-check"></i> <span>Konfirmasi PIN cocok</span>
+          </div>
         </div>
       </div>
 
       <div>
-        <button onclick="handleRegister()" class="w-full py-3.5 rounded-xl lumina-gradient text-white text-xs font-bold shadow-lg shadow-indigo-500/30 flex items-center justify-center gap-2 transform active:scale-95 transition">
+        <button id="btnRegister" onclick="handleRegister()" class="w-full py-3.5 rounded-xl lumina-gradient text-white text-xs font-bold shadow-lg shadow-indigo-500/30 flex items-center justify-center gap-2 transform active:scale-95 transition">
+          <i class="fa-solid fa-lock text-[11px]"></i>
           <span>Daftar & Kunci Brankas</span>
-          <i class="fa-solid fa-arrow-right text-[11px]"></i>
         </button>
       </div>
     </div>
@@ -472,30 +492,46 @@
 
     </div>
 
-    <!-- Quick Add Modal Popup with Round-Up Savings Rule -->
+    <!-- Quick Add Modal Popup with Round-Up Savings Rule & Balance Guard -->
     <div id="quickAddModal" class="absolute inset-0 bg-black/75 backdrop-blur-sm z-50 flex items-end hidden">
-      <div class="w-full bg-slate-900 border-t border-white/15 rounded-t-[28px] p-4 space-y-2.5">
+      <div class="w-full bg-slate-900 border-t border-white/15 rounded-t-[28px] p-4 space-y-3">
         <div class="w-8 h-1 bg-white/20 rounded-full mx-auto mb-1"></div>
-        <h3 class="text-xs font-bold text-white text-center">Tambah Transaksi</h3>
+        <div class="flex justify-between items-center">
+          <h3 class="text-xs font-bold text-white">Catat Transaksi Baru</h3>
+          <span class="text-[10px] text-indigo-400 font-semibold">BCA: Rp 5.000.000</span>
+        </div>
         
-        <div class="p-2.5 rounded-xl bg-white/5 border border-white/10 space-y-2">
-          <div class="flex justify-between text-xs">
-            <span class="text-slate-300">Nominal Belanja</span>
-            <span class="font-bold text-white">Rp 32.500</span>
+        <div class="p-3 rounded-xl bg-white/5 border border-white/10 space-y-2.5">
+          <div>
+            <label class="text-[10px] text-slate-400 block mb-1">Nominal Transaksi</label>
+            <div class="flex items-center gap-1">
+              <span class="text-sm font-bold text-slate-400">Rp</span>
+              <input type="number" id="quickAmountInput" value="32500" oninput="updateRoundUpPreview()" class="w-full bg-transparent text-xl font-bold text-white outline-none">
+            </div>
           </div>
+          
+          <!-- Quick Amount Chips -->
+          <div class="flex gap-1.5 overflow-x-auto no-scrollbar pt-1">
+            <button onclick="addQuickAmount(10000)" class="px-2 py-1 rounded-md bg-indigo-500/20 text-indigo-300 text-[10px] font-bold active:scale-95 transition">+10rb</button>
+            <button onclick="addQuickAmount(50000)" class="px-2 py-1 rounded-md bg-indigo-500/20 text-indigo-300 text-[10px] font-bold active:scale-95 transition">+50rb</button>
+            <button onclick="addQuickAmount(100000)" class="px-2 py-1 rounded-md bg-indigo-500/20 text-indigo-300 text-[10px] font-bold active:scale-95 transition">+100rb</button>
+            <button onclick="addQuickAmount(500000)" class="px-2 py-1 rounded-md bg-indigo-500/20 text-indigo-300 text-[10px] font-bold active:scale-95 transition">+500rb</button>
+          </div>
+
           <div class="pt-2 border-t border-white/10 flex justify-between items-center text-xs">
             <div class="flex items-center gap-1.5">
               <i class="fa-solid fa-arrow-up-right-dots text-emerald-400"></i>
-              <span class="text-[11px] text-emerald-300 font-semibold">Otomatisasi Round-Up:</span>
+              <span class="text-[10px] text-emerald-300 font-semibold">Otomatisasi Round-Up:</span>
             </div>
-            <span class="text-[11px] font-bold text-emerald-400">+Rp 2.500 ke Celengan</span>
+            <span id="quickRoundUpLabel" class="text-[10px] font-bold text-emerald-400">+Rp 2.500 ke Celengan</span>
           </div>
         </div>
 
-        <button onclick="saveRoundUpTx()" class="w-full py-2.5 rounded-xl lumina-gradient text-white text-xs font-bold shadow-lg shadow-indigo-500/30">
-          Simpan Transaksi (Rp 35.000)
+        <button onclick="saveRoundUpTx()" class="w-full py-2.5 rounded-xl lumina-gradient text-white text-xs font-bold shadow-lg shadow-indigo-500/30 flex items-center justify-center gap-2 active:scale-95 transition">
+          <i class="fa-solid fa-check text-[11px]"></i>
+          <span>Simpan Transaksi</span>
         </button>
-        <button onclick="closeQuickAdd()" class="w-full py-1.5 text-center text-xs text-slate-400 font-semibold">Batal</button>
+        <button onclick="closeQuickAdd()" class="w-full py-1 text-center text-xs text-slate-400 font-semibold">Batal</button>
       </div>
     </div>
 
@@ -503,8 +539,9 @@
 
   <script>
     let enteredPin = "";
-    let correctPin = "123456";
+    let correctPin = "583921";
     let userName = "Alex";
+    let failedAttempts = 0;
 
     function gotoScreen(state) {
       const splash = document.getElementById('splashScreen');
@@ -524,6 +561,7 @@
         }, 800);
       } else if (state === 'REGISTER') {
         register.classList.remove('hidden');
+        validateRegForm();
       } else if (state === 'LOGIN') {
         enteredPin = "";
         updateDots();
@@ -536,15 +574,49 @@
       }
     }
 
-    function handleRegister() {
+    function validateRegForm() {
       const name = document.getElementById('regName').value.trim();
-      const pin = document.getElementById('regPin').value.trim();
-      if (!name || pin.length !== 6) {
-        alert("Nama wajib diisi dan PIN harus tepat 6 digit!");
-        return;
+      const pin = document.getElementById('regPin').value;
+      const confirm = document.getElementById('regPinConfirm').value;
+      
+      const isNameValid = name.length >= 3;
+      const isLengthValid = pin.length === 6 && /^\d+$/.test(pin);
+      const isNonSeq = isLengthValid && !["012345", "123456", "234567", "345678", "456789", "543210", "654321", "000000", "111111", "222222", "333333", "444444", "555555", "666666", "777777", "888888", "999999"].includes(pin);
+      const isMatch = pin.length > 0 && pin === confirm;
+
+      updateCheckRow('valName', isNameValid);
+      updateCheckRow('valLength', isLengthValid);
+      updateCheckRow('valNonSeq', isNonSeq);
+      updateCheckRow('valMatch', isMatch);
+
+      const isValid = isNameValid && isLengthValid && isNonSeq && isMatch;
+      const btn = document.getElementById('btnRegister');
+      if (isValid) {
+        btn.classList.remove('opacity-40', 'cursor-not-allowed');
+        btn.disabled = false;
+      } else {
+        btn.classList.add('opacity-40', 'cursor-not-allowed');
+        btn.disabled = true;
       }
-      userName = name;
-      correctPin = pin;
+      return isValid;
+    }
+
+    function updateCheckRow(id, valid) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      if (valid) {
+        el.className = "flex items-center gap-2 text-emerald-400";
+        el.querySelector('i').className = "fa-solid fa-circle-check";
+      } else {
+        el.className = "flex items-center gap-2 text-slate-500";
+        el.querySelector('i').className = "fa-regular fa-circle";
+      }
+    }
+
+    function handleRegister() {
+      if (!validateRegForm()) return;
+      userName = document.getElementById('regName').value.trim();
+      correctPin = document.getElementById('regPin').value;
       confetti({ particleCount: 60, spread: 60, origin: { y: 0.6 } });
       gotoScreen('LOGIN');
     }
@@ -580,10 +652,16 @@
     function verifyLoginPin() {
       if (enteredPin === correctPin) {
         document.getElementById('loginError').innerText = "";
+        failedAttempts = 0;
         confetti({ particleCount: 50, spread: 70, origin: { y: 0.6 } });
         gotoScreen('DASHBOARD');
       } else {
-        document.getElementById('loginError').innerText = "PIN salah! Coba lagi.";
+        failedAttempts++;
+        const loginCard = document.getElementById('loginScreen');
+        loginCard.classList.add('animate-bounce');
+        setTimeout(() => loginCard.classList.remove('animate-bounce'), 400);
+
+        document.getElementById('loginError').innerText = `PIN salah! Percobaan ${failedAttempts}/5`;
         enteredPin = "";
         updateDots();
       }
@@ -592,6 +670,28 @@
     function quickFaceID() {
       confetti({ particleCount: 40, spread: 50, origin: { y: 0.6 } });
       gotoScreen('DASHBOARD');
+    }
+
+    function addQuickAmount(val) {
+      const input = document.getElementById('quickAmountInput');
+      input.value = (parseInt(input.value) || 0) + val;
+      updateRoundUpPreview();
+    }
+
+    function updateRoundUpPreview() {
+      const amt = parseInt(document.getElementById('quickAmountInput').value) || 0;
+      const remainder = amt % 5000;
+      const roundUp = remainder === 0 ? 0 : 5000 - remainder;
+      document.getElementById('quickRoundUpLabel').innerText = `+Rp ${roundUp.toLocaleString('id-ID')} ke Celengan`;
+    }
+
+    function saveRoundUpTx() {
+      const amt = parseInt(document.getElementById('quickAmountInput').value) || 0;
+      const remainder = amt % 5000;
+      const roundUp = remainder === 0 ? 0 : 5000 - remainder;
+      confetti({ particleCount: 45, spread: 60, origin: { y: 0.7 } });
+      alert(`✅ Transaksi Rp ${amt.toLocaleString('id-ID')} berhasil dicatat!\n🪙 Rp ${roundUp.toLocaleString('id-ID')} pembulatan otomatis ditabung ke Celengan Dana Darurat.`);
+      closeQuickAdd();
     }
 
     function toggleHabitWithConfetti(btn) {

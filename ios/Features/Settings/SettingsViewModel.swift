@@ -12,11 +12,25 @@ public final class SettingsViewModel: ObservableObject {
     @Published public var csvUrl: URL?
     @Published public var showingShareSheet: Bool = false
     @Published public var shareItems: [Any] = []
+    @Published public var showResetConfirmation: Bool = false
     
     @Published public var errorMessage: String?
     @Published public var successMessage: String?
     
     public init() {}
+    
+    public func wipeLocalData() async -> Bool {
+        do {
+            let _: Bool = try await GoBridgeService.shared.dispatch(action: "wipe_data")
+            HapticManager.notification(.success)
+            self.successMessage = "Semua data transaksi dan catatan berhasil direset."
+            return true
+        } catch {
+            self.errorMessage = "Gagal mereset data: \(error.localizedDescription)"
+            HapticManager.notification(.error)
+            return false
+        }
+    }
     
     public func toggleBiometric(enable: Bool) async {
         let authenticated = await BiometricAuthService.shared.authenticate(

@@ -564,6 +564,19 @@ func LuminaDispatch(action string, payloadJSON string) string {
 		}
 		return successResponse(map[string]string{"csv_content": csvStr})
 
+	case "wipe_data":
+		tables := []string{
+			"transactions", "savings_entries", "savings_goals", "budgets",
+			"habit_logs", "habits", "goals", "calendar_events", "notes",
+			"recurring_rules",
+		}
+		for _, tbl := range tables {
+			if _, err := bridgeDB.Exec("DELETE FROM " + tbl); err != nil {
+				return errorResponse(fmt.Sprintf("failed to wipe %s: %v", tbl, err))
+			}
+		}
+		return successResponse(true)
+
 	default:
 		return errorResponse(fmt.Sprintf("unknown action: %s", strings.TrimSpace(action)))
 	}
