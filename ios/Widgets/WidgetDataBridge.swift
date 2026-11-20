@@ -12,7 +12,7 @@ public struct LuminaWidgetSnapshot: Codable, Sendable {
     public let topSavingsProgress: Double
     public let topSavingsCurrent: Int64
     public let topSavingsTarget: Int64
-    public let habits: [WidgetHabitSnapshot]
+    public var habits: [WidgetHabitSnapshot]
     public let lastUpdated: Date
     
     public init(

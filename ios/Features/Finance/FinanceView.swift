@@ -123,15 +123,19 @@ public struct FinanceView: View {
                                     .tint(budget.isOverBudget ? Color(hex: "F43F5E") : Color(hex: "6366F1"))
                                 
                                 HStack {
-                                    Text("Terpakai: ")
-                                        .foregroundColor(.secondary)
-                                        .font(LuminaFont.caption()) +
-                                    Text(LuminaAmountText(amount: budget.spent, font: LuminaFont.caption()).body)
+                                    HStack(spacing: 2) {
+                                        Text("Terpakai: ")
+                                            .foregroundColor(.secondary)
+                                            .font(LuminaFont.caption())
+                                        LuminaAmountText(amount: budget.spent, font: LuminaFont.caption())
+                                    }
                                     Spacer()
-                                    Text("Batas: ")
-                                        .foregroundColor(.secondary)
-                                        .font(LuminaFont.caption()) +
-                                    Text(LuminaAmountText(amount: budget.amount, font: LuminaFont.caption()).body)
+                                    HStack(spacing: 2) {
+                                        Text("Batas: ")
+                                            .foregroundColor(.secondary)
+                                            .font(LuminaFont.caption())
+                                        LuminaAmountText(amount: budget.amount, font: LuminaFont.caption())
+                                    }
                                 }
                             }
                         }

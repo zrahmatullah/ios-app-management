@@ -165,9 +165,13 @@ public struct DashboardView: View {
                                 VStack(alignment: .leading, spacing: 4) {
                                     Text(item.name)
                                         .font(LuminaFont.headline())
-                                    Text("\(LuminaAmountText(amount: item.currentAmount, font: LuminaFont.caption()).body) dari \(LuminaAmountText(amount: item.targetAmount, font: LuminaFont.caption()).body)")
-                                        .font(LuminaFont.caption())
-                                        .foregroundColor(.secondary)
+                                    HStack(spacing: 4) {
+                                        LuminaAmountText(amount: item.currentAmount, font: LuminaFont.caption())
+                                        Text("dari")
+                                            .font(LuminaFont.caption())
+                                            .foregroundColor(.secondary)
+                                        LuminaAmountText(amount: item.targetAmount, font: LuminaFont.caption())
+                                    }
                                 }
                                 Spacer()
                             }
