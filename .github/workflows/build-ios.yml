@@ -40,19 +40,55 @@ jobs:
           xcodebuild archive \
             -project Lumina.xcodeproj \
             -scheme Lumina \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
             -configuration Release \
             -archivePath "build/Unsigned.xcarchive" \
+            CODE_SIGN_STYLE=Manual \
             CODE_SIGN_IDENTITY="" \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
-            2>&1 | tee /tmp/xcodebuild.log || (echo "=== XCODEBUILD ERROR LOG ==="; tail -n 80 /tmp/xcodebuild.log; exit 1)
+            AD_HOC_CODE_SIGNING_ALLOWED=YES \
+            2>&1 | tee /tmp/xcodebuild.log || \
+          xcodebuild \
+            -project Lumina.xcodeproj \
+            -scheme Lumina \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -configuration Release \
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            AD_HOC_CODE_SIGNING_ALLOWED=YES \
+            -derivedDataPath ./build/DerivedData build \
+            2>&1 | tee -a /tmp/xcodebuild.log
           
           mkdir -p build/Payload
-          cp -R build/Unsigned.xcarchive/Products/Applications/*.app build/Payload/
+          APP_PATH=$(find build -name "Lumina.app" | head -n 1)
+          echo "Found app at: $APP_PATH"
+          if [ -z "$APP_PATH" ]; then
+            echo "ERROR: Lumina.app was not found!"
+            exit 1
+          fi
+          cp -R "$APP_PATH" build/Payload/
           cd build && zip -r Lumina.ipa Payload
           echo "IPA built successfully at: $(pwd)/Lumina.ipa"
 
+      - name: Print Xcode Build Log
+        if: always()
+        run: |
+          if [ -f /tmp/xcodebuild.log ]; then
+            echo "## Xcode Log Output" >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            tail -n 80 /tmp/xcodebuild.log >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+            echo "=== FULL LOG ERRORS ==="
+            grep -i -C 3 "error:" /tmp/xcodebuild.log || tail -n 60 /tmp/xcodebuild.log
+          fi
+
       - name: Upload IPA Artifact
+        if: success()
         uses: actions/upload-artifact@v4
         with:
           name: Lumina-iOS-IPA
