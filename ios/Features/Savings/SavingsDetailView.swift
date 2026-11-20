@@ -253,8 +253,12 @@ public struct DepositSheetView: View {
             return
         }
         
-        if let s = viewModel.selectedSavings, type == "WITHDRAW", amount > s.currentAmount {
-            validationError = "Penarikan melebihi saldo celengan (Rp \(s.currentAmount.formatted()))"
+        let currentBalance = viewModel.savingsList.first(where: { $0.id == savingsId })?.currentAmount
+            ?? viewModel.selectedProjection?.currentAmount
+            ?? 0
+        
+        if type == "WITHDRAW", amount > currentBalance {
+            validationError = "Penarikan melebihi saldo celengan (Rp \(currentBalance.formatted()))"
             HapticManager.notification(.error)
             return
         }
